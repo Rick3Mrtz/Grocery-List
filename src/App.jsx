@@ -1,9 +1,26 @@
-import react from 'react'
+import { useState } from 'react'
 import './App.css'
 import { AiFillCheckCircle } from 'react-icons/ai'
 import { VscClose } from 'react-icons/vsc'
 
 function App() {
+
+  const [newItem, setNewItem] = useState("")
+  const [todos, setTodos] = useState([])
+
+  function handleSubmit(e) {
+    e.preventDefault()
+
+    setTodos((currentTodos) => {
+      return [
+        ...currentTodos,
+        { id: crypto.randomUUID(), title: newItem, completed: false},
+      ]
+    })
+
+    setNewItem("")
+
+  }
 
 
   return (
@@ -13,9 +30,16 @@ function App() {
         Brick's Grocery List
       </h1>
 
-      <form className='new-item-form'>
+      <form onSubmit={handleSubmit} className='new-item-form'>
         {/* <label className='ml-2' htmlFor='item'>New Item</label> */}
-        <input className='w-[70vw] h-[40px] my-4' type='text' id='item' placeholder='Need Anything?'>
+
+        <input className='w-[70vw] h-[40px] my-4' 
+        type='text' 
+        id='item' 
+        placeholder='Need Anything?'
+        value={newItem}
+        onChange={e => setNewItem(e.target.value)}
+        >
         </input>
         <button className=' btn'>Add</button>
       </form>
@@ -24,9 +48,12 @@ function App() {
         {/* Groceries to Buy */}
         <div className='bg-gray-200 mx-8 p-4 h-fit mt-8'>
           <h1 className='text-xl text-center font-extrabold'>Groceries we need</h1>
-          <ul className=' mt-6 list flex justify-start items-center'>
-            <li className='text-3xl'>
-              Apples
+
+          <ul className=' mt-6 list flex flex-col justify-start items-center'>
+            {todos.map(todo => {
+              return <li key={todo.id}
+              className='text-3xl'>
+              {todo.title}
               <button>
               <AiFillCheckCircle size={30} color='green'/>
               </button>
@@ -34,6 +61,8 @@ function App() {
               <VscClose size={30} color='red' />
               </button>
             </li>
+            })}
+            
           </ul>
 
         </div>
