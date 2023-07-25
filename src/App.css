@@ -20,3 +20,9 @@ form {
   cursor: pointer;
   
 }
+
+/* Add this to your App.css or your desired CSS file */
+.completed {
+  color: darkgray;
+  text-decoration: line-through;
+}
