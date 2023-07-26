@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 function BottomNav() {
   return (
-    <nav className='fixed bottom-0 left-0 right-0 bg-[#354f52] p-4 flex justify-around'>
+    <nav className='fixed bottom-0 left-0 right-0 bg-[#354f] p-4 flex justify-around'>
       <button className='text-white font-bold' type='button'>
         Button 1
       </button>
