@@ -1,25 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { AiFillCheckCircle } from 'react-icons/ai'
 import { VscClose } from 'react-icons/vsc'
+import InputForm from './components/InputForm'
 
 function App() {
 
-  const [newItem, setNewItem] = useState("")
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState(() => {
+    const storedTools = localStorage.getItem('todos');
+    return storedTools ? JSON.parse(storedTools) : [];
+  })
 
-  function handleSubmit(e) {
-    e.preventDefault()
+  {/* useEffect will monitor changes to 'todos' and save it to local storage */}
 
-    setTodos((currentTodos) => {
-      return [
-        ...currentTodos,
-        { id: crypto.randomUUID(), title: newItem, completed: false},
-      ]
-    })
-
-    setNewItem("")
-  }
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   function handleCompleteItem(id) {
     setTodos((currentTodos) =>
@@ -28,27 +24,21 @@ function App() {
       )
     );
   }
+
+  function handleDeleteItem(id) {
+    setTodos(currentTodos => {
+      return currentTodos.filter(todo => todo.id !== id)
+    })
+  }
   
 
   return (
     <>
-      <h1 className='flex text-4xl font-bold justify-center mt-[6vh] mb-[3vh]'>
+      <h1 className='flex text-4xl font-bold justify-center mt-[6vh] mb-[3vh] text-[#354F52]'>
         Brick's Grocery List
       </h1>
 
-      <form onSubmit={handleSubmit} className='new-item-form'>
-        {/* <label className='ml-2' htmlFor='item'>New Item</label> */}
-
-        <input className='w-[70vw] h-[40px] my-4' 
-        type='text' 
-        id='item' 
-        placeholder='Need Anything?'
-        value={newItem}
-        onChange={e => setNewItem(e.target.value)}
-        >
-        </input>
-        <button className=' btn'>Add</button>
-      </form>
+      <InputForm setTodos={setTodos} />
       
         {/* Groceries to Buy */}
         <div className='bg-gray-200 mx-8 p-4 h-fit mt-8'>
@@ -66,7 +56,7 @@ function App() {
                 <AiFillCheckCircle size={30} color='green' />
               </button>
               {todo.title}
-              <button>
+              <button onClick={() => handleDeleteItem(todo.id)}>
                 <VscClose size={30} color='red' />
               </button>
             </li>
@@ -78,25 +68,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
-
-
-        {/* Right Column - Groceries Bought Already
-        <div className='bg-green-200 p-4 mr-4 h-fit'>
-          <h1 className='text-xl text-center font-extrabold'>Groceries we have</h1>
-
-          <ul className=' mt-10 list flex justify-start items-center'>
-            <li>
-              <label>
-                <input type="checkbox" className='mr-4' />
-                Bananas
-              </label>
-            </li>
-          </ul>
-
-
-        </div> */}
