@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { AiFillCheckCircle } from 'react-icons/ai';
 import { VscClose } from 'react-icons/vsc';
 import InputForm from './components/InputForm';
+import BottomNav from './components/BottomNav';
+import GroceryList from './components/GroceryList';
 
 function App() {
   const [todos, setTodos] = useState(() => {
@@ -29,42 +30,22 @@ function App() {
     );
   }
 
+
   return (
     <>
       <h1 className='flex text-4xl font-bold justify-center mt-[6vh] mb-[3vh] text-[#354F52]'>
         Grocery List
       </h1>
-
+      
       <InputForm setTodos={setTodos} />
 
-      <div className='bg-gray-200 mx-2 p-4 h-fit mt-8'>
-        <h1 className='text-xl text-center font-extrabold'>
-          Groceries we need
-        </h1>
-        <ul className='mt-6 list flex flex-col justify-start items-stretch'>
-          {todos.map((todo) => (
-            <li
-              key={todo.id}
-              className={`text-2xl flex items-center justify-between ${
-                todo.completed ? 'completed' : ''
-              }`}
-            >
-              <div className='flex items-center'>
-                <input
-                  type='checkbox'
-                  checked={todo.completed}
-                  onChange={() => handleCompleteItem(todo.id)}
-                  className='custom-checkbox'
-                />
-                <span className='ml-2'>{todo.title}</span>
-              </div>
-              <button onClick={() => handleDeleteItem(todo.id)}>
-                <VscClose size={30} color='red' />
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <GroceryList
+        todos={todos}
+        handleCompleteItem={handleCompleteItem}
+        handleDeleteItem={handleDeleteItem}
+        />
+
+      <BottomNav />
     </>
   );
 }
