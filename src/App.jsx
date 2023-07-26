@@ -11,7 +11,7 @@ function App() {
     return storedTools ? JSON.parse(storedTools) : [];
   })
 
-  {/* useEffect will monitor changes to 'todos' and save it to local storage */}
+  {/* useEffect will monitor changes to 'todos' and save it to local storage */ }
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
@@ -30,32 +30,35 @@ function App() {
       return currentTodos.filter(todo => todo.id !== id)
     })
   }
-  
 
   return (
     <>
       <h1 className='flex text-4xl font-bold justify-center mt-[6vh] mb-[3vh] text-[#354F52]'>
-        Brick's Grocery List
+        Grocery List
       </h1>
 
       <InputForm setTodos={setTodos} />
-      
-        {/* Groceries to Buy */}
-        <div className='bg-gray-200 mx-8 p-4 h-fit mt-8'>
+
+      <div className='bg-gray-200 mx-8 p-4 h-fit mt-8'>
         <h1 className='text-xl text-center font-extrabold'>
           Groceries we need
         </h1>
-
-        <ul className='mt-6 list flex flex-col justify-start items-center'>
+        <ul className='mt-6 list flex flex-col justify-start items-stretch'>
           {todos.map((todo) => (
             <li
               key={todo.id}
-              className={`text-4xl ${todo.completed ? 'completed' : ''}`}
+              className={`text-4xl flex items-center justify-between ${todo.completed ? 'completed' : ''
+                }`}
             >
-              <button onClick={() => handleCompleteItem(todo.id)}>
-                <AiFillCheckCircle size={30} color='green' />
-              </button>
-              {todo.title}
+              <div className='flex items-center'>
+                <input
+                  type='checkbox'
+                  checked={todo.completed}
+                  onChange={() => handleCompleteItem(todo.id)}
+                  className='custom-checkbox'
+                />
+                <span className='ml-2'>{todo.title}</span>
+              </div>
               <button onClick={() => handleDeleteItem(todo.id)}>
                 <VscClose size={30} color='red' />
               </button>
