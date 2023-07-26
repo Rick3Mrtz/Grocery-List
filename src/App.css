@@ -56,3 +56,9 @@ form {
   width: 320px;
   margin: 0 auto;
 }
+
+.list li {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
