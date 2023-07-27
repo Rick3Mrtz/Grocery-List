@@ -1,29 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { VscClose } from 'react-icons/vsc';
-// import groceryProgress from './GroceryProgress';
+import { VscCheck} from 'react-icons/vsc';
+import { BiEdit } from 'react-icons/bi';
+import './GroceryList.css'
 
-function GroceryList({ todos, handleCompleteItem, handleDeleteItem }) {
+function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos }) {
+  const [editedItem, setEditedItem] = useState(null);
+  const [updatedTitle, setUpdatedTitle] = useState('');
 
-    // const completion = groceryProgress();
-    // console.log(completion)
+  const handleEditItem = (id, title) => {
+    setEditedItem(id);
+    setUpdatedTitle(title);
+  };  
+
+  const handleUpdateItem = (id) => {
+    const updatedTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, title: updatedTitle } : todo
+    );
+    setEditedItem(null);
+    setTodos(updatedTodos);
+    localStorage.setItem('todos', JSON.stringify(updatedTodos));
+  };
+
+//   Code below is for using a key to do a function desired
+
+  const handleKeyPress = (e, id) => {
+    if (e.key === "Enter") {
+        handleUpdateItem(id);
+    }
+  }
 
   return (
     <>
-    
-      <div className='bg-gray-200 mx-2 p-4 h-fit mt-8 relative'>
-      {/* <span
-            style={{ transform: `translateX(${completion - 100}%)` }}
-             className='absolute bg-red-600 h-1 w-full top-0'
-        /> */}
-        <h1 className='text-xl text-center font-extrabold'>
-          Groceries we need
-        </h1>
-        <div className='mt-6 max-h-[43vh] overflow-y-auto pr-4'>
+      <div className='bg-gray-200 mx-2 p-4 h-fit mt-6 relative'>
+        <div className='max-h-[43vh] overflow-y-auto pr-4'>
           <ul className='list flex flex-col justify-start items-stretch'>
             {todos.map((todo) => (
               <li
                 key={todo.id}
-                className={`text-2xl flex items-center justify-between ${
+                className={`text-lg flex items-center justify-between ${
                   todo.completed ? 'completed' : ''
                 }`}
               >
@@ -34,16 +49,39 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem }) {
                     onChange={() => handleCompleteItem(todo.id)}
                     className='custom-checkbox'
                   />
-                  <span className='ml-2'>{todo.title}</span>
+                  {editedItem === todo.id ? (
+                    <input
+                      type='text'
+                      value={updatedTitle}
+                      onChange={(e) => setUpdatedTitle(e.target.value)}
+                      onKeyDown={(e) => handleKeyPress(e, todo.id)}
+                      onMouseDown={(e) => e.stopPropagation()}
+                      className='edit-input outline-none border-none bg-white text-lg font-bold'
+                    />
+                  ) : (
+                    <span className='ml-4'>{todo.title}</span>
+                  )}
                 </div>
-                <button onClick={() => handleDeleteItem(todo.id)}>
-                  <VscClose size={30} color='red' />
-                </button>
+                <div className='flex items-center'>
+                  {editedItem === todo.id ? (
+                    <button onClick={() => handleUpdateItem(todo.id)}
+                    className='btn-save'
+                    >
+                      <VscCheck size={30} color='green' />
+                    </button>
+                  ) : (
+                    <button onClick={() => handleEditItem(todo.id, todo.title)}> {/* Pass the title here */}
+                      <BiEdit size={30} color='black' />
+                    </button>
+                  )}
+                  <button onClick={() => handleDeleteItem(todo.id)}>
+                    <VscClose size={30} color='red' />
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
         </div>
-        
       </div>
     </>
   );

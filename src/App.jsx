@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import InputForm from './components/InputForm';
 import BottomNav from './components/BottomNav'; 
 import GroceryList from './components/GroceryList';
-import ShoppingList from './components/ShoppingList';
-import Home from './components/Home';
+import { FiEdit } from 'react-icons/fi'
 
 function App() {
   const [todos, setTodos] = useState(() => {
@@ -44,6 +42,7 @@ function App() {
   return ( 
     <>
       <h1 className='flex text-4xl font-bold justify-center mt-[6vh] mb-[3vh] text-[#354F]'>
+     
         <input
           type="text"
           value={listName}
@@ -51,7 +50,9 @@ function App() {
           className="outline-none border-none bg-transparent text-[#354F] text-4xl font-bold text-center"
           placeholder="Type List Name Here"
         />
+        
       </h1>
+      
 
       <InputForm setTodos={setTodos} />
 
@@ -59,6 +60,7 @@ function App() {
         todos={todos}
         handleCompleteItem={handleCompleteItem}
         handleDeleteItem={handleDeleteItem}
+        setTodos={setTodos}
       />
 
       <BottomNav />
