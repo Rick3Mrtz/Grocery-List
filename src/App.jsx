@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import InputForm from './components/InputForm';
 import BottomNav from './components/BottomNav'; 
 import GroceryList from './components/GroceryList';
 import ShoppingList from './components/ShoppingList';
+import Home from './components/Home';
 
 function App() {
   const [todos, setTodos] = useState(() => {
@@ -12,10 +13,19 @@ function App() {
     return storedTools ? JSON.parse(storedTools) : [];
   });
 
-  // useEffect will monitor changes to 'todos' and save it to local storage
+  const [listName, setListName] = useState(() => {
+    const storedListName = localStorage.getItem('listName');
+    return storedListName ? JSON.parse(storedListName) : 'Grocery List';
+  });
+
+  // useEffect will monitor changes to 'todos' and 'listName' and save them to local storage
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
+
+  useEffect(() => {
+    localStorage.setItem('listName', JSON.stringify(listName));
+  }, [listName]);
 
   function handleCompleteItem(id) {
     setTodos((currentTodos) =>
@@ -34,7 +44,13 @@ function App() {
   return ( 
     <>
       <h1 className='flex text-4xl font-bold justify-center mt-[6vh] mb-[3vh] text-[#354F]'>
-        Grocery List
+        <input
+          type="text"
+          value={listName}
+          onChange={(e) => setListName(e.target.value)}
+          className="outline-none border-none bg-transparent text-[#354F] text-4xl font-bold text-center"
+          placeholder="Type List Name Here"
+        />
       </h1>
 
       <InputForm setTodos={setTodos} />
@@ -45,11 +61,9 @@ function App() {
         handleDeleteItem={handleDeleteItem}
       />
 
-      {/* Add the bottom navigation */}
       <BottomNav />
     </>
   );
 }
 
 export default App;
-
