@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import AddSave from './AddSave';
 
 function InputForm({ setTodos }) {
 
@@ -28,7 +29,7 @@ function InputForm({ setTodos }) {
                     onChange={(e) => setNewItem(e.target.value)}
                 >
                 </input>
-                <button className=' btn'>Add</button>
+                <AddSave />
             </form>
         </>
     )

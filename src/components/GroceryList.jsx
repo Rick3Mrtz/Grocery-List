@@ -70,7 +70,7 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos }) 
                       <VscCheck size={30} color='green' />
                     </button>
                   ) : (
-                    <button onClick={() => handleEditItem(todo.id, todo.title)}> {/* Pass the title here */}
+                    <button onClick={() => handleEditItem(todo.id, todo.title)}>
                       <BiEdit size={30} color='black' />
                     </button>
                   )}

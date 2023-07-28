@@ -3,7 +3,7 @@ import './App.css';
 import InputForm from './components/InputForm';
 import BottomNav from './components/BottomNav'; 
 import GroceryList from './components/GroceryList';
-import { FiEdit } from 'react-icons/fi'
+import { FaPencilAlt } from 'react-icons/fa'
 
 function App() {
   const [todos, setTodos] = useState(() => {
@@ -13,8 +13,10 @@ function App() {
 
   const [listName, setListName] = useState(() => {
     const storedListName = localStorage.getItem('listName');
-    return storedListName ? JSON.parse(storedListName) : 'Grocery List';
+    return storedListName ? JSON.parse(storedListName) : 'List #1';
   });
+
+  const [editingListName, setEditingListName] = useState(false);
 
   // useEffect will monitor changes to 'todos' and 'listName' and save them to local storage
   useEffect(() => {
@@ -24,6 +26,13 @@ function App() {
   useEffect(() => {
     localStorage.setItem('listName', JSON.stringify(listName));
   }, [listName]);
+
+  useEffect(() => {
+    // If editingListName becomes false and the listName is empty, set it to 'List #1'
+    if (!editingListName && listName.trim() === '') {
+      setListName('List #1');
+    }
+  }, [editingListName, listName]);
 
   function handleCompleteItem(id) {
     setTodos((currentTodos) =>
@@ -39,19 +48,51 @@ function App() {
     );
   }
 
+  function handleListNameChange(e) {
+    setListName(e.target.value);
+  }
+
+  function handleListNameKeyPress(e) {
+    if (e.key === 'Enter') {
+      setEditingListName(false);
+    }
+  }
+
+  function handleListNameBlur() {
+    if (listName.trim() === '') {
+      setListName('List #1');
+    }
+    setEditingListName(false);
+  }
+
+  console.log(listName)
+
   return ( 
     <>
       <h1 className='flex text-4xl font-bold justify-center mt-[6vh] mb-[3vh] text-[#354F]'>
-     
-        <input
-          type="text"
-          value={listName}
-          onChange={(e) => setListName(e.target.value)}
-          className="outline-none border-none bg-transparent text-[#354F] text-4xl font-bold text-center"
-          placeholder="Type List Name Here"
-        />
-        
+        {editingListName ? (
+          <input
+            type="text"
+            value={listName}
+            onChange={handleListNameChange}
+            onBlur={handleListNameBlur}
+            onKeyDown={handleListNameKeyPress}
+            className="outline-none border-none bg-white text-[#354F] text-4xl font-bold text-center"
+          />
+        ) : (
+          <>
+            <span>{listName}</span>
+            <button
+              className='ml-2'
+              onClick={() => setEditingListName(true)}
+            >
+              <FaPencilAlt size={24} color='black' />
+            </button>
+          </>
+        )}
       </h1>
+
+      
       
 
       <InputForm setTodos={setTodos} />
