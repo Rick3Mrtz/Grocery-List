@@ -2,21 +2,22 @@ import { useState } from 'react';
 import AddSave from './AddSave';
 
 function InputForm({ setTodos }) {
+  const [newItem, setNewItem] = useState('');
 
-    const [newItem, setNewItem] = useState("")
+  function handleSubmit(e) {
+    e.preventDefault();
 
-    function handleSubmit(e) {
-        e.preventDefault()
-    
-        setTodos((currentTodos) => {
-          return [
-            ...currentTodos,
-            { id: crypto.randomUUID(), title: newItem, completed: false},
-          ]
-        })
-    
-        setNewItem("")
-      }
+    // Trim the newItem to remove leading/trailing whitespace before checking if it's empty
+    const trimmedNewItem = newItem.trim();
+    if (trimmedNewItem !== '') {
+      setTodos((currentTodos) => [
+        ...currentTodos,
+        { id: crypto.randomUUID(), title: trimmedNewItem, completed: false },
+      ]);
+    }
+
+    setNewItem('');
+  }
 
     return (
         <>
