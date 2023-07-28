@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import { VscCheck} from 'react-icons/vsc';
 import { BiEdit } from 'react-icons/bi';
-import './GroceryList.css'
 
 function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos }) {
   const [editedItem, setEditedItem] = useState(null);
@@ -56,7 +55,7 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos }) 
                       onChange={(e) => setUpdatedTitle(e.target.value)}
                       onKeyDown={(e) => handleKeyPress(e, todo.id)}
                       onMouseDown={(e) => e.stopPropagation()}
-                      className='edit-input outline-none border-none bg-white text-lg font-bold'
+                      className='edit-input w-[85%] outline-none border-none bg-white text-lg font-bold ml-[7px]'
                     />
                   ) : (
                     <span className='ml-4'>{todo.title}</span>

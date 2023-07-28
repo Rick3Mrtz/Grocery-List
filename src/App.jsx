@@ -3,7 +3,9 @@ import './App.css';
 import InputForm from './components/InputForm';
 import BottomNav from './components/BottomNav'; 
 import GroceryList from './components/GroceryList';
-import { FaPencilAlt } from 'react-icons/fa'
+import Nav from './components/Nav';
+import { FaPencilAlt } from 'react-icons/fa';
+import SideNav from './components/SideNav';
 
 function App() {
   const [todos, setTodos] = useState(() => {
@@ -33,6 +35,14 @@ function App() {
       setListName('List #1');
     }
   }, [editingListName, listName]);
+
+  const [showSideNav, setShowSideNav] = useState(false);
+  const [savedLists, setSavedLists] = useState(() => {
+    const storedLists = localStorage.getItem('savedLists');
+    return storedLists ? JSON.parse(storedLists) : [];
+  });
+
+  console.log(listName)
 
   function handleCompleteItem(id) {
     setTodos((currentTodos) =>
@@ -65,10 +75,10 @@ function App() {
     setEditingListName(false);
   }
 
-  console.log(listName)
-
   return ( 
     <>
+      <Nav setShowSideNav={setShowSideNav} />
+      <div className='mb-32'></div>
       <h1 className='flex text-4xl font-bold justify-center mt-[6vh] mb-[3vh] text-[#354F]'>
         {editingListName ? (
           <input
@@ -92,9 +102,6 @@ function App() {
         )}
       </h1>
 
-      
-      
-
       <InputForm setTodos={setTodos} />
 
       <GroceryList
@@ -105,6 +112,12 @@ function App() {
       />
 
       <BottomNav />
+      <SideNav
+        showSideNav={showSideNav}
+        savedLists={savedLists}
+        setSavedLists={setSavedLists}
+        setShowSideNav={setShowSideNav}
+      />
     </>
   );
 }
