@@ -23,15 +23,16 @@ function InputForm({ setTodos }) {
     return (
         <>
             <form onSubmit={handleSubmit} className='new-item-form'>
-                <input className='w-[47vw] h-[40px] my-4 max-w-[17rem]'
+                <input
+                    className='w-[47vw] h-[40px] my-4 max-w-[17rem] pl-2'
                     type='text'
                     id='item'
-                    placeholder='   Need Anything?'
+                    placeholder='Need Anything?'
                     value={newItem}
                     onChange={(e) => setNewItem(e.target.value)}
                 >
                 </input>
-                <button className='btn-add'>
+                <button type='submit' className='btn-add'>
                   <MdAdd size={25} />
                 </button>
                
