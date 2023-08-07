@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import AddSave from './AddSave';
+import { MdAdd } from 'react-icons/md';
 
 function InputForm({ setTodos }) {
   const [newItem, setNewItem] = useState('');
@@ -22,7 +23,7 @@ function InputForm({ setTodos }) {
     return (
         <>
             <form onSubmit={handleSubmit} className='new-item-form'>
-                <input className='w-[70vw] h-[40px] my-4 max-w-[17rem]'
+                <input className='w-[47vw] h-[40px] my-4 max-w-[17rem]'
                     type='text'
                     id='item'
                     placeholder='   Need Anything?'
@@ -30,8 +31,12 @@ function InputForm({ setTodos }) {
                     onChange={(e) => setNewItem(e.target.value)}
                 >
                 </input>
-                <AddSave />
+                <button className='btn-add'>
+                  <MdAdd size={25} />
+                </button>
+               
             </form>
+            {/* <AddSave /> */}
         </>
     )
 }

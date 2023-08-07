@@ -31,8 +31,8 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos }) 
 
   return (
     <>
-      <div className='bg-gray-200 mx-2 p-4 h-fit mt-6 relative'>
-        <div className='max-h-[43vh] overflow-y-auto pr-4'>
+      <div className='bg-gray-200 mx-2 px-2 py-4 h-fit mt-6 relative'>
+        <div className='max-h-[43vh] overflow-y-auto'>
           <ul className='list flex flex-col justify-start items-stretch'>
             {todos.map((todo) => (
               <li
