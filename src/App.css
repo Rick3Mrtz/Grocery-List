@@ -80,3 +80,14 @@ form {
 .btn-add[type='submit'] {
   background-color: #354f; 
 }
+
+/* BottomNav.css */
+.plus-btn {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+  box-shadow: 2px 2px 3px #999;
+  cursor: pointer;
+  background-color: white;
+}

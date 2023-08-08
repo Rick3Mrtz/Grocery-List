@@ -56,7 +56,7 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos }) 
                       onChange={(e) => setUpdatedTitle(e.target.value)}
                       onKeyDown={(e) => handleKeyPress(e, todo.id)}
                       onMouseDown={(e) => e.stopPropagation()}
-                      className='edit-input w-[85%] outline-none border-none bg-white text-lg font-bold ml-[7px]'
+                      className='edit-input w-[85%] outline-none border-none bg-white text-lg font-bold ml-[7px] pl-2'
                     />
                   ) : (
                     <span className='ml-4'>{todo.title}</span>
