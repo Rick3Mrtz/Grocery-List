@@ -1,15 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { FaTimes } from 'react-icons/fa';
 
-function SideNav({ showSideNav, savedLists, setSavedLists, setShowSideNav }) {
-  const [newListName, setNewListName] = useState('');
-
-  const handleAddList = () => {
-    if (newListName.trim() === '') return;
-    setSavedLists([...savedLists, newListName]);
-    setNewListName('');
-  };
-
+function SideNav({ showSideNav, savedLists, setSavedLists, setShowSideNav, setSelectedList, listName }) {
   const handleDeleteList = (index) => {
     const updatedLists = [...savedLists];
     updatedLists.splice(index, 1);
@@ -19,6 +11,8 @@ function SideNav({ showSideNav, savedLists, setSavedLists, setShowSideNav }) {
   useEffect(() => {
     localStorage.setItem('savedLists', JSON.stringify(savedLists));
   }, [savedLists]);
+
+
 
   return (
     <>
@@ -31,29 +25,15 @@ function SideNav({ showSideNav, savedLists, setSavedLists, setShowSideNav }) {
             </button>
           </div>
           <ul>
-            {savedLists.map((listName, index) => (
-              <li key={index} className='flex justify-between items-center mb-2'>
-                <span>{listName}</span>
+            {savedLists.map((list, index) => (
+                <li key={index} className='flex justify-between items-center mb-2'>
+                <span>{list.listName}</span>
                 <button onClick={() => handleDeleteList(index)}>
                   <FaTimes size={16} color='red' />
                 </button>
               </li>
             ))}
           </ul>
-          <div className='mt-4'>
-            <input
-              type='text'
-              placeholder='Enter list name'
-              className='w-full px-2 py-1 rounded'
-              value={newListName}
-              onChange={(e) => setNewListName(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  handleAddList();
-                }
-              }}
-            />
-          </div>
         </div>
       )}
     </>

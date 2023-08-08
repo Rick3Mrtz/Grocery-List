@@ -6,6 +6,7 @@ import GroceryList from './components/GroceryList';
 import Nav from './components/Nav';
 import { FaPencilAlt } from 'react-icons/fa';
 import SideNav from './components/SideNav';
+import SaveList from './components/SaveList';
 
 function App() {
   const [todos, setTodos] = useState(() => {
@@ -19,6 +20,8 @@ function App() {
   });
 
   const [editingListName, setEditingListName] = useState(false);
+
+  const [selectedList, setSelectedList] = useState(null);
 
   // useEffect will monitor changes to 'todos' and 'listName' and save them to local storage
   useEffect(() => {
@@ -109,6 +112,7 @@ function App() {
         handleCompleteItem={handleCompleteItem}
         handleDeleteItem={handleDeleteItem}
         setTodos={setTodos}
+        // selectedList={selectedList}
       />
 
       <BottomNav />
@@ -117,7 +121,11 @@ function App() {
         savedLists={savedLists}
         setSavedLists={setSavedLists}
         setShowSideNav={setShowSideNav}
+        setSelectedList={setSelectedList}
+        listName={listName}
       />
+      <SaveList todos={todos} setSavedLists={setSavedLists} listName={listName} /> {/* Pass the necessary props */}
+
     </>
   );
 }

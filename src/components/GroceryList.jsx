@@ -2,9 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import { VscCheck} from 'react-icons/vsc';
 import { BiEdit } from 'react-icons/bi';
-import SaveList from './SaveList';
 
-function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos }) {
+
+function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos, selectedList }) {
+  console.log('selectedList:', selectedList);
+  const filteredTodos = todos.filter(todo => todo.list === selectedList);
+  console.log('filteredTodos:', filteredTodos);
+  console.log('all todos:', todos);
+
+
+
   const [editedItem, setEditedItem] = useState(null);
   const [updatedTitle, setUpdatedTitle] = useState('');
 
@@ -22,6 +29,8 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos }) 
     localStorage.setItem('todos', JSON.stringify(updatedTodos));
   };
 
+   
+
 //   Code below is for using a key to do a function desired
 
   const handleKeyPress = (e, id) => {
@@ -32,7 +41,9 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos }) 
 
   return (
     <>
-    {todos.length > 0 && ( // Conditionally render the div
+    {selectedList === null ? (
+        <p>Please select a list from the side navigation.</p>
+      ) : filteredTodos.length > 0 && ( // Conditionally render the div
       <div className='bg-gray-200 mx-2 px-2 py-2 h-fit mt-6 relative'>
         <div className='max-h-[43vh] overflow-y-auto'>
           <ul className='list flex flex-col justify-start items-stretch'>
@@ -84,7 +95,6 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos }) 
           </ul>
         </div>
         <div>
-          <SaveList />
         </div>
         
       </div>

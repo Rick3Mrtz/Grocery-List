@@ -9,17 +9,6 @@ form {
   align-items: center;
 }
 
-.btn {
-  width: 90px;
-  display: flex;
-  justify-content: center;
-  color: #CAD2C5;
-  background-color: #354f;
-  padding: 7px;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
 .completed {
   color: darkgray;
   text-decoration: line-through;
@@ -50,7 +39,7 @@ form {
 }
 
 #app-container {
-  width: 320px;
+  width: 400px;
   margin: 0 auto;
 }
 
@@ -63,6 +52,17 @@ form {
 .new-item-form {
   display: flex;
   flex-direction: row;
+}
+
+.btn {
+  width: 90px;
+  display: flex;
+  justify-content: center;
+  color: #ffffff;
+  background-color: #354f;
+  padding: 7px;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 .btn-add {
@@ -91,3 +91,26 @@ form {
   cursor: pointer;
   background-color: white;
 }
+
+#select-all {
+  /* border: #354f; */
+  outline-style: solid;
+  outline-color: #354f;
+  background-color: transparent;
+  color: #354f;
+  width: 40px;
+}
+
+#save-list {
+  width: 130px;
+}
+
+#clear-all {
+  /* border: #354f; */
+  outline-style: solid;
+  outline-color: red;
+  background-color: red;
+  color: white;
+  width: 40px;
+}
+

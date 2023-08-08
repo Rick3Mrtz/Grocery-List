@@ -1,45 +1,53 @@
-import { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import { MdAdd } from 'react-icons/md';
 
 function InputForm({ setTodos }) {
   const [newItem, setNewItem] = useState('');
+
+  useEffect(() => {
+    console.log('input value:', newItem);
+  }, [newItem]);
 
   function handleSubmit(e) {
     e.preventDefault();
 
     // Trim the newItem to remove leading/trailing whitespace before checking if it's empty
     const trimmedNewItem = newItem.trim();
+    
+    console.log('Trimmed Item:', trimmedNewItem); // Add this line
+
+
     if (trimmedNewItem !== '') {
-      setTodos((currentTodos) => [
-        ...currentTodos,
-        { id: crypto.randomUUID(), title: trimmedNewItem, completed: false },
-      ]);
+      const newItemObj = {
+        id: Math.random().toString(36).slice(2, 9), // Generates a random string as ID
+        title: trimmedNewItem,
+        completed: false,
+      };
+      setTodos((currentTodos) => [...currentTodos, newItemObj]);
     }
 
     setNewItem('');
+    
+
   }
 
-    return (
-        <>
-            <form onSubmit={handleSubmit} className='new-item-form'>
-                <input
-                    className='w-[47vw] h-[40px] my-4 max-w-[17rem] pl-2'
-                    type='text'
-                    id='item'
-                    placeholder='Need Anything?'
-                    value={newItem}
-                    onChange={(e) => setNewItem(e.target.value)}
-                >
-                </input>
-                <button type='submit' className='btn-add'>
-                  <MdAdd size={25} />
-                </button>
-               
-            </form>
-            {/* <AddSave /> */}
-        </>
-    )
+  return (
+    <>
+      <form onSubmit={handleSubmit} className='new-item-form'>
+        <input
+          className='w-[47vw] h-[40px] my-4 max-w-[17rem] pl-2'
+          type='text'
+          id='item'
+          placeholder='Need Anything?'
+          value={newItem}
+          onChange={(e) => setNewItem(e.target.value)}
+        />
+        <button type='submit' className='btn-add'>
+          <MdAdd size={25} />
+        </button>
+      </form>
+    </>
+  );
 }
 
 export default InputForm;
