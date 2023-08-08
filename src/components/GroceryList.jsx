@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import { VscCheck} from 'react-icons/vsc';
 import { BiEdit } from 'react-icons/bi';
+import SaveList from './SaveList';
 
 function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos }) {
   const [editedItem, setEditedItem] = useState(null);
@@ -82,6 +83,10 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos }) 
             ))}
           </ul>
         </div>
+        <div>
+          <SaveList />
+        </div>
+        
       </div>
     )}
     </>
