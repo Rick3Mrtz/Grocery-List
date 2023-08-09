@@ -1,26 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiSolidSelectMultiple } from 'react-icons/bi'
 import { VscClearAll } from 'react-icons/vsc'
+import ClearAllPopup from "./ClearAllPopup";
 
-function SaveList({ todos, setSavedLists, listName }) {
+function SaveList({ todos, setTodos, setSavedLists, listName, handleSelectAll }) {
+    const [showConfirmationPopup, setShowConfirmationPopup] = useState(false)
+
     const handleSaveList = () => {
         if (listName.trim() !== '' && todos.length > 0) {
-            // Create a new list using the todos
             const newList = 
             {
                 listName: listName,
                 todos: todos
             };
             
-            // Add the new list to savedLists state
             setSavedLists(savedLists => [...savedLists, newList]);
         }
     };
 
+    const handleClearAllConfirmed = () => {
+        setSavedLists([]);
+        setShowConfirmationPopup(false);
+    };
+
+    const handleClearTodosConfirmed = () => {
+        setTodos([]);
+        setShowConfirmationPopup(false);
+    };
+
+    const handleClearAllCanceled = () => {
+        setShowConfirmationPopup(false);
+    };
+
     return (
-        <div className="w-full flex items-center justify-between">
-            <button id="select-all" className='btn'>
-                <BiSolidSelectMultiple size={30} />
+        <div className="flex items-center justify-between mx-2">
+            <button id="select-all" className='btn' onClick={handleSelectAll}>
+                <BiSolidSelectMultiple size={25} />
             </button>
 
             <button
@@ -31,9 +46,18 @@ function SaveList({ todos, setSavedLists, listName }) {
                 Save List
             </button>
 
-            <button id="clear-all" className='btn'>
-                <VscClearAll size={30} />
+            <button id="clear-all" className='btn' onClick={() => setShowConfirmationPopup(true)}>
+                <VscClearAll size={25} />
             </button>
+
+            {showConfirmationPopup && <div className="overlay" />}
+
+            {showConfirmationPopup && (
+                <ClearAllPopup 
+                    onClearTodos={handleClearTodosConfirmed}
+                    onCancel={handleClearAllCanceled}
+                />
+            )}
         </div>
     );
 }

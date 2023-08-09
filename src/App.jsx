@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import InputForm from './components/InputForm';
-import BottomNav from './components/BottomNav'; 
+import BottomNav from './components/BottomNav';
 import GroceryList from './components/GroceryList';
 import Nav from './components/Nav';
 import { FaPencilAlt } from 'react-icons/fa';
@@ -22,6 +22,14 @@ function App() {
   const [editingListName, setEditingListName] = useState(false);
 
   const [selectedList, setSelectedList] = useState(null);
+  const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
+
+  const handleSelectAll = () => {
+    const hasUncheckedItems = todos.some(todo => !todo.completed);
+
+    setTodos(currentTodos =>
+      currentTodos.map(todo => ({ ...todo, completed: hasUncheckedItems })));
+  };
 
   // useEffect will monitor changes to 'todos' and 'listName' and save them to local storage
   useEffect(() => {
@@ -44,8 +52,6 @@ function App() {
     const storedLists = localStorage.getItem('savedLists');
     return storedLists ? JSON.parse(storedLists) : [];
   });
-
-  console.log(listName)
 
   function handleCompleteItem(id) {
     setTodos((currentTodos) =>
@@ -78,54 +84,62 @@ function App() {
     setEditingListName(false);
   }
 
-  return ( 
+  return (
     <>
-      <Nav setShowSideNav={setShowSideNav} />
-      <div className='mb-32'></div>
-      <h1 className='flex text-4xl font-bold justify-center mt-[6vh] mb-[3vh] text-[#354F]'>
-        {editingListName ? (
-          <input
-            type="text"
-            value={listName}
-            onChange={handleListNameChange}
-            onBlur={handleListNameBlur}
-            onKeyDown={handleListNameKeyPress}
-            className="outline-none border-none bg-white text-[#354F] text-4xl font-bold text-center"
-          />
-        ) : (
-          <>
-            <span>{listName}</span>
-            <button
-              className='ml-2'
-              onClick={() => setEditingListName(true)}
-            >
-              <FaPencilAlt size={24} color='black' />
-            </button>
-          </>
-        )}
-      </h1>
+        <Nav setShowSideNav={setShowSideNav} />
+        <div className='mb-32'></div>
+        <h1 className='flex text-4xl font-bold justify-center mt-[6vh] mb-[3vh] text-[#354F]'>
+          {editingListName ? (
+            <input
+              type="text"
+              value={listName}
+              onChange={handleListNameChange}
+              onBlur={handleListNameBlur}
+              onKeyDown={handleListNameKeyPress}
+              className="outline-none border-none bg-white text-[#354F] text-4xl font-bold text-center"
+            />
+          ) : (
+            <>
+              <span>{listName}</span>
+              <button
+                className='ml-2'
+                onClick={() => setEditingListName(true)}
+              >
+                <FaPencilAlt size={24} color='black' />
+              </button>
+            </>
+          )}
+        </h1>
 
-      <InputForm setTodos={setTodos} />
+        <InputForm setTodos={setTodos} />
 
-      <GroceryList
-        todos={todos}
-        handleCompleteItem={handleCompleteItem}
-        handleDeleteItem={handleDeleteItem}
-        setTodos={setTodos}
+        <GroceryList
+          todos={todos}
+          handleCompleteItem={handleCompleteItem}
+          handleDeleteItem={handleDeleteItem}
+          setTodos={setTodos}
         // selectedList={selectedList}
-      />
+        />
 
-      <BottomNav />
-      <SideNav
-        showSideNav={showSideNav}
-        savedLists={savedLists}
-        setSavedLists={setSavedLists}
-        setShowSideNav={setShowSideNav}
-        setSelectedList={setSelectedList}
-        listName={listName}
-      />
-      <SaveList todos={todos} setSavedLists={setSavedLists} listName={listName} /> {/* Pass the necessary props */}
+        <BottomNav />
 
+        <SideNav
+          showSideNav={showSideNav}
+          savedLists={savedLists}
+          setSavedLists={setSavedLists}
+          setShowSideNav={setShowSideNav}
+          setSelectedList={setSelectedList}
+          listName={listName}
+        />
+
+        <SaveList
+          todos={todos}
+          setTodos={setTodos}
+          setSavedLists={setSavedLists}
+          listName={listName}
+          handleSelectAll={handleSelectAll}
+          setShowConfirmationPopup={setShowConfirmationPopup}
+        />
     </>
   );
 }

@@ -5,7 +5,6 @@ function InputForm({ setTodos }) {
   const [newItem, setNewItem] = useState('');
 
   useEffect(() => {
-    console.log('input value:', newItem);
   }, [newItem]);
 
   function handleSubmit(e) {
@@ -13,9 +12,6 @@ function InputForm({ setTodos }) {
 
     // Trim the newItem to remove leading/trailing whitespace before checking if it's empty
     const trimmedNewItem = newItem.trim();
-    
-    console.log('Trimmed Item:', trimmedNewItem); // Add this line
-
 
     if (trimmedNewItem !== '') {
       const newItemObj = {
@@ -27,8 +23,6 @@ function InputForm({ setTodos }) {
     }
 
     setNewItem('');
-    
-
   }
 
   return (
