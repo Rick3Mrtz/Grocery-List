@@ -20,13 +20,24 @@ function App() {
 
   const [editingListName, setEditingListName] = useState(false);
 
-  const [selectedList, setSelectedList] = useState(null);
+  // const [selectedList, setSelectedList] = useState(null);
 
   const handleSelectAll = () => {
     const hasUncheckedItems = todos.some(todo => !todo.completed);
 
     setTodos(currentTodos =>
       currentTodos.map(todo => ({ ...todo, completed: hasUncheckedItems })));
+  };
+
+  const handleCreateNewList = () => {
+    setTodos([]);
+    setListName('New List');
+  };
+
+  const [isEditingListName, setIsEditingListName] = useState(false);
+
+  const enterEditListNameMode = () => {
+    setIsEditingListName(true);
   };
 
   // useEffect will monitor changes to 'todos' and 'listName' and save them to local storage
@@ -39,10 +50,10 @@ function App() {
   }, [listName]);
 
   useEffect(() => {
-    if (!editingListName && listName.trim() === '') {
+    if (!isEditingListName && listName.trim() === '') {
       setListName('New List');
     }
-  }, [editingListName, listName]);
+  }, [isEditingListName, listName]);
 
   const [showSideNav, setShowSideNav] = useState(false);
   const [savedLists, setSavedLists] = useState(() => {
@@ -70,7 +81,7 @@ function App() {
 
   function handleListNameKeyPress(e) {
     if (e.key === 'Enter') {
-      setEditingListName(false);
+      setIsEditingListName(false);
     }
   }
 
@@ -78,7 +89,7 @@ function App() {
     if (listName.trim() === '') {
       setListName('List #1');
     }
-    setEditingListName(false);
+    setIsEditingListName(false);
   }
 
   return (
@@ -86,7 +97,7 @@ function App() {
         <Nav setShowSideNav={setShowSideNav} />
         <div className='mb-32'></div>
         <h1 className='flex text-4xl font-bold justify-center mt-[6vh] mb-[3vh] text-[#354F]'>
-          {editingListName ? (
+          {isEditingListName ? (
             <input
               type="text"
               placeholder='Ex: Groceries'
@@ -101,7 +112,7 @@ function App() {
               <span>{listName}</span>
               <button
                 className='ml-2'
-                onClick={() => setEditingListName(true)}
+                onClick={() => setIsEditingListName(true)}
               >
                 <FaPencilAlt size={24} color='black' />
               </button>
@@ -124,6 +135,8 @@ function App() {
 
         <BottomNav
         setShowSideNav={setShowSideNav}
+        handleCreateNewList={handleCreateNewList}
+        enterEditListNameMode={enterEditListNameMode}
         />
 
         <SideNav
@@ -131,7 +144,7 @@ function App() {
           savedLists={savedLists}
           setSavedLists={setSavedLists}
           setShowSideNav={setShowSideNav}
-          setSelectedList={setSelectedList}
+          // setSelectedList={setSelectedList}
           listName={listName}
         />
 

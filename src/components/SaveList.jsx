@@ -18,11 +18,6 @@ function SaveList({ todos, setTodos, setSavedLists, listName = "", handleSelectA
         }
     };
 
-    const handleClearAllConfirmed = () => {
-        setSavedLists([]);
-        setShowConfirmationPopup(false);
-    };
-
     const handleClearTodosConfirmed = () => {
         setTodos([]);
         setShowConfirmationPopup(false);
