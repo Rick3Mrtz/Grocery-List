@@ -173,3 +173,38 @@ form {
   color: white;
   cursor: pointer;
 }
+
+/* BOTTOM NAV */
+
+.bottom-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  /* padding: 10px; */
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-button {
+  /* flex: 1; */
+  /* text-align: center; */
+  padding: 15px;
+  color: #354f;
+  border: none;
+  background: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#nav-circle {
+  /* padding: 0 20px; */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* position: fixed; */
+  color: #354f;
+  /* border-radius: 50%; */
+}

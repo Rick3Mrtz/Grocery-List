@@ -6,7 +6,6 @@ import GroceryList from './components/GroceryList';
 import Nav from './components/Nav';
 import { FaPencilAlt } from 'react-icons/fa';
 import SideNav from './components/SideNav';
-import SaveList from './components/SaveList';
 
 function App() {
   const [todos, setTodos] = useState(() => {
@@ -22,7 +21,6 @@ function App() {
   const [editingListName, setEditingListName] = useState(false);
 
   const [selectedList, setSelectedList] = useState(null);
-  const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
 
   const handleSelectAll = () => {
     const hasUncheckedItems = todos.some(todo => !todo.completed);
@@ -41,9 +39,8 @@ function App() {
   }, [listName]);
 
   useEffect(() => {
-    // If editingListName becomes false and the listName is empty, set it to 'List #1'
     if (!editingListName && listName.trim() === '') {
-      setListName('List #1');
+      setListName('New List');
     }
   }, [editingListName, listName]);
 
@@ -92,11 +89,12 @@ function App() {
           {editingListName ? (
             <input
               type="text"
+              placeholder='Ex: Groceries'
               value={listName}
               onChange={handleListNameChange}
               onBlur={handleListNameBlur}
               onKeyDown={handleListNameKeyPress}
-              className="outline-none border-none bg-white text-[#354F] text-4xl font-bold text-center"
+              className=" bg-white rounded-md w-[96%] text-[#354F] text-4xl font-bold text-center"
             />
           ) : (
             <>
@@ -118,10 +116,15 @@ function App() {
           handleCompleteItem={handleCompleteItem}
           handleDeleteItem={handleDeleteItem}
           setTodos={setTodos}
-        // selectedList={selectedList}
+          handleSelectAll={handleSelectAll}
+          setSavedLists={setSavedLists}
+          listName={listName}
+          // selectedList={selectedList}
         />
 
-        <BottomNav />
+        <BottomNav
+        setShowSideNav={setShowSideNav}
+        />
 
         <SideNav
           showSideNav={showSideNav}
@@ -132,14 +135,7 @@ function App() {
           listName={listName}
         />
 
-        <SaveList
-          todos={todos}
-          setTodos={setTodos}
-          setSavedLists={setSavedLists}
-          listName={listName}
-          handleSelectAll={handleSelectAll}
-          setShowConfirmationPopup={setShowConfirmationPopup}
-        />
+
     </>
   );
 }

@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import { VscCheck } from 'react-icons/vsc';
 import { BiEdit } from 'react-icons/bi';
+import SaveList from './SaveList';
 
-
-function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos, selectedList }) {
+function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos, selectedList, setSavedLists, listName, handleSelectAll }) {
   const filteredTodos = todos.filter(todo => todo.list === selectedList);
+  const hasTodos = filteredTodos.length > 0;
 
   const [editedItem, setEditedItem] = useState(null);
   const [updatedTitle, setUpdatedTitle] = useState('');
@@ -34,15 +35,14 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos, se
     <>
       {selectedList === null ? (
         <p>Please select a list from the side navigation.</p>
-      ) : filteredTodos.length > 0 && ( // Conditionally render the div
-        <div className='bg-gray-200 mx-2 px-2 py-2 h-fit mt-6 relative'>
+      ) : hasTodos && (
+        <div className='bg-gray-200 rounded-md mx-2 px-2 py-2 h-fit mt-6 relative'>
           <div className='max-h-[43vh] overflow-y-auto'>
             <ul className='list flex flex-col justify-start items-stretch'>
               {todos.map((todo) => (
                 <li
                   key={todo.id}
-                  className={`text-lg flex items-center justify-between ${todo.completed ? 'completed' : ''
-                    }`}
+                  className={`text-lg flex items-center justify-between ${todo.completed ? 'completed' : ''}`}
                 >
                   <div className='flex items-center'>
                     <input
@@ -86,6 +86,15 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos, se
           </div>
         </div>
       )}
+      {hasTodos && 
+      <SaveList
+  todos={todos}
+  setTodos={setTodos}  // Make sure this line is present
+  setSavedLists={setSavedLists}
+  listName={listName}
+  handleSelectAll={handleSelectAll}
+/>
+}
     </>
   );
 }

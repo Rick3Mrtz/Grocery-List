@@ -29,7 +29,7 @@ function InputForm({ setTodos }) {
     <>
       <form onSubmit={handleSubmit} className='new-item-form'>
         <input
-          className='w-[47vw] h-[40px] my-4 max-w-[17rem] pl-2'
+          className='w-[47vw] rounded-s-md h-[40px] my-4 max-w-[17rem] pl-2'
           type='text'
           id='item'
           placeholder='Need Anything?'
