@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { BrowserRouter, Router, Route, Link, Routes } from 'react-router-dom';
 import { BsPlusCircleFill } from 'react-icons/bs';
-import { BsListStars } from 'react-icons/bs';
 import { AiFillHome } from 'react-icons/ai';
 import { BsImages } from 'react-icons/bs';
 import { BsInstagram } from 'react-icons/bs';
+import { BsFillGridFill } from 'react-icons/bs';
+import GridLayout from './GridLayout';
 
-function BottomNav({ setShowSideNav, handleCreateNewList, enterEditListNameMode }) {
+function BottomNav({ savedLists, handleCreateNewList, enterEditListNameMode }) {
   const [createNewListMode, setCreateNewListMode] = useState(false);
 
   const handleNewListClick = () => {
@@ -14,16 +16,21 @@ function BottomNav({ setShowSideNav, handleCreateNewList, enterEditListNameMode 
   };
 
   return (
+
+    <>
+    <div>
+
+
     <div className="bottom-nav bg-gray-200">
 
       <button className="nav-button">
         <AiFillHome size={30} />
       </button>
-
-      <button className='nav-button' onClick={() => setShowSideNav(true)}>
-        <BsListStars size={30} />
-      </button>
-
+      
+        <button className="nav-button">
+        <BsFillGridFill size={30} />
+        </button>
+       
       <button
         className="nav-button"
         id='nav-circle'
@@ -44,6 +51,12 @@ function BottomNav({ setShowSideNav, handleCreateNewList, enterEditListNameMode 
       </button>
 
     </div>
+
+
+    
+    </div>
+    </>
+
   );
 }
 

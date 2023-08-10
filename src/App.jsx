@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { Route, Link, Routes } from 'react-router-dom';
 import './App.css';
 import InputForm from './components/InputForm';
 import BottomNav from './components/BottomNav';
 import GroceryList from './components/GroceryList';
 import Nav from './components/Nav';
-import { FaPencilAlt } from 'react-icons/fa';
 import SideNav from './components/SideNav';
+import GridLayout from './components/GridLayout';
+import Home from './components/Home';
+import TitleInput from './components/TitleInput';
 
 function App() {
+
   const [todos, setTodos] = useState(() => {
     const storedTools = localStorage.getItem('todos');
     return storedTools ? JSON.parse(storedTools) : [];
@@ -40,7 +44,6 @@ function App() {
     setIsEditingListName(true);
   };
 
-  // useEffect will monitor changes to 'todos' and 'listName' and save them to local storage
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
@@ -95,33 +98,15 @@ function App() {
   return (
     <>
         <Nav setShowSideNav={setShowSideNav} />
-        <div className='mb-32'></div>
-        <h1 className='flex text-4xl font-bold justify-center mt-[6vh] mb-[3vh] text-[#354F]'>
-          {isEditingListName ? (
-            <input
-              type="text"
-              placeholder='Ex: Groceries'
-              value={listName}
-              onChange={handleListNameChange}
-              onBlur={handleListNameBlur}
-              onKeyDown={handleListNameKeyPress}
-              className=" bg-white rounded-md w-[96%] text-[#354F] text-4xl font-bold text-center"
-            />
-          ) : (
-            <>
-              <span>{listName}</span>
-              <button
-                className='ml-2'
-                onClick={() => setIsEditingListName(true)}
-              >
-                <FaPencilAlt size={24} color='black' />
-              </button>
-            </>
-          )}
-        </h1>
-
+        <TitleInput
+        isEditingListName={isEditingListName}
+        listName={listName}
+        handleListNameChange={handleListNameChange} 
+        handleListNameBlur={handleListNameBlur}
+        handleListNameKeyPress={handleListNameKeyPress}
+        setIsEditingListName= {setIsEditingListName}
+        />
         <InputForm setTodos={setTodos} />
-
         <GroceryList
           todos={todos}
           handleCompleteItem={handleCompleteItem}
@@ -132,13 +117,12 @@ function App() {
           listName={listName}
           // selectedList={selectedList}
         />
-
         <BottomNav
+        savedLists={savedLists}
         setShowSideNav={setShowSideNav}
         handleCreateNewList={handleCreateNewList}
         enterEditListNameMode={enterEditListNameMode}
         />
-
         <SideNav
           showSideNav={showSideNav}
           savedLists={savedLists}
@@ -147,10 +131,26 @@ function App() {
           // setSelectedList={setSelectedList}
           listName={listName}
         />
-
-
     </>
   );
 }
 
 export default App;
+
+
+    {/* <RouterProvider router={router}>
+      <BottomNav />
+    </RouterProvider> */}
+
+      // const router = createBrowserRouter([
+  //   {
+  //     path:"/grid",
+  //     element: <GridLayout />
+  //   },
+  //   {
+  //     path:"/",
+  //     element: <Home />
+  //   }
+  // ])
+
+  // router={router}
