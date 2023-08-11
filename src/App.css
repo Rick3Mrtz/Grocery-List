@@ -199,16 +199,6 @@ form {
   cursor: pointer;
 }
 
-#nav-circle {
-  /* padding: 0 20px; */
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* position: fixed; */
-  color: #354f;
-  /* border-radius: 50%; */
-}
-
 .card {
   background-color: white;
   padding: 20px;

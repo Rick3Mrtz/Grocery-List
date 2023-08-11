@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Link, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import InputForm from './components/InputForm';
 import BottomNav from './components/BottomNav';
@@ -96,8 +96,13 @@ function App() {
   }
 
   return (
+    <Router>
+      <Nav setShowSideNav={setShowSideNav} />
+      <Routes>
+        <Route
+        path='/'
+        element={ 
     <>
-        <Nav setShowSideNav={setShowSideNav} />
         <TitleInput
         isEditingListName={isEditingListName}
         listName={listName}
@@ -132,25 +137,16 @@ function App() {
           listName={listName}
         />
     </>
+        }
+    />
+    <Route path="/grid" element={
+         <GridLayout 
+         setShowSideNav={setShowSideNav} 
+         showSideNav={showSideNav}/>} 
+         />
+    </Routes>
+    </Router>
   );
 }
 
 export default App;
-
-
-    {/* <RouterProvider router={router}>
-      <BottomNav />
-    </RouterProvider> */}
-
-      // const router = createBrowserRouter([
-  //   {
-  //     path:"/grid",
-  //     element: <GridLayout />
-  //   },
-  //   {
-  //     path:"/",
-  //     element: <Home />
-  //   }
-  // ])
-
-  // router={router}

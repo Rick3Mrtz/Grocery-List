@@ -15,7 +15,7 @@ function InputForm({ setTodos }) {
 
     if (trimmedNewItem !== '') {
       const newItemObj = {
-        id: Math.random().toString(36).slice(2, 9), // Generates a random string as ID
+        id: Math.random().toString(36).slice(2, 9),
         title: trimmedNewItem,
         completed: false,
       };
