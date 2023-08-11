@@ -26,7 +26,7 @@ function TitleInput({
               onChange={handleListNameChange}
               onBlur={handleListNameBlur}
               onKeyDown={handleListNameKeyPress}
-              className="bg-white w-full px-0 outline-none"
+              className="bg-white text-black w-full py-0 outline-black h-4/5"
             />
           </div>
         ) : (

@@ -9,6 +9,7 @@ import SideNav from './components/SideNav';
 import GridLayout from './components/GridLayout';
 import Home from './components/Home';
 import TitleInput from './components/TitleInput';
+import SaveList from './components/SaveList';
 
 function App() {
 
@@ -22,9 +23,13 @@ function App() {
     return storedListName ? JSON.parse(storedListName) : 'List #1';
   });
 
+  
+
   const [editingListName, setEditingListName] = useState(false);
 
   // const [selectedList, setSelectedList] = useState(null);
+
+  const todosLength = todos.length;
 
   const handleSelectAll = () => {
     const hasUncheckedItems = todos.some(todo => !todo.completed);
@@ -70,6 +75,8 @@ function App() {
     return storedLists ? JSON.parse(storedLists) : [];
   });
 
+
+
   function handleCompleteItem(id) {
     setTodos((currentTodos) =>
       currentTodos.map((todo) =>
@@ -101,6 +108,8 @@ function App() {
     setIsEditingListName(false);
   }
 
+  console.log('todosLength:', todosLength);
+
   return (
     <Router>
       <Nav
@@ -108,7 +117,7 @@ function App() {
         setIsEditingListName={setEditingListName}
         enterEditListNameMode={enterEditListNameMode}
         inputRef={inputRef}
-        />
+      />
 
       <BottomNav
         savedLists={savedLists}
@@ -142,27 +151,36 @@ function App() {
                 inputRef={inputRef}
               />
 
-              <InputForm setTodos={setTodos} />
+<InputForm setTodos={setTodos} />
 
-              <GroceryList
-                todos={todos}
-                handleCompleteItem={handleCompleteItem}
-                handleDeleteItem={handleDeleteItem}
-                setTodos={setTodos}
-                handleSelectAll={handleSelectAll}
-                setSavedLists={setSavedLists}
-                listName={listName}
-              // selectedList={selectedList}
-              />
-            </>
+<GroceryList
+  todos={todos}
+  handleCompleteItem={handleCompleteItem}
+  handleDeleteItem={handleDeleteItem}
+  setTodos={setTodos}
+  handleSelectAll={handleSelectAll}
+  setSavedLists={setSavedLists}
+  listName={listName}
+/>
+
+{todosLength > 0 && (
+        <SaveList
+          todos={todos}
+          setTodos={setTodos}
+          setSavedLists={setSavedLists}
+          listName={listName}
+          handleSelectAll={handleSelectAll}
+        />
+      )}
+</>
           }
         />
 
         <Route path="/grid" element={
-          <GridLayout
-            savedLists={savedLists}
-            setShowSideNav={setShowSideNav}
-            showSideNav={showSideNav} />}
+            <GridLayout
+              savedLists={savedLists}
+            />
+        }
         />
 
       </Routes>

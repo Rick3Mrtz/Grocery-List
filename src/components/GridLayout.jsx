@@ -1,19 +1,15 @@
 import React from 'react';
 
-function GridLayout() {
-
-    return (
-        <>        
-                <div className="grid grid-cols-2 gap-4 p-4 mt-16 mb-8">
-                    <div className="card">Card 1</div>
-                    <div className="card">Card 2</div>
-                    <div className="card">Card 3</div>
-                    <div className="card">Card 4</div>
-                    <div className="card">Card 5</div>
-                    <div className="card">Card 6</div>
-                </div>
-        </>
-    );
+function GridLayout({ savedLists }) {
+  return (
+    <div className="grid grid-cols-2 gap-4 p-4 mt-16 mb-8">
+      {savedLists.map((list, index) => (
+        <div key={index} className="card text-black">
+          {list.name} {/* Assuming each saved list has a 'name' property */}
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default GridLayout;

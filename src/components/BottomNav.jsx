@@ -38,7 +38,10 @@ function BottomNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
         <BsFillGridFill size={30} />
         </Link>
        
-      <button
+
+        <Link
+      to='/'
+      
         className="nav-button"
         id='nav-circle'
         onClick={() => {
@@ -54,7 +57,8 @@ function BottomNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
         }}
       >
         <BsPlusCircleFill size={50} />
-      </button>
+      
+      </Link>
 
       <button className="nav-button">
         <BsImages size={30} />

@@ -33,9 +33,7 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos, se
 
   return (
     <>
-      {selectedList === null ? (
-        <p>Please select a list from the side navigation.</p>
-      ) : hasTodos && (
+
         <div className=' rounded-md mx-2 px-2 py-2 h-fit mt-6 relative'>
           <div className='max-h-[43vh] overflow-y-auto'>
             <ul className='list flex flex-col justify-start items-stretch text-[#c0bda5]'>
@@ -58,7 +56,7 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos, se
                         onChange={(e) => setUpdatedTitle(e.target.value)}
                         onKeyDown={(e) => handleKeyPress(e, todo.id)}
                         onMouseDown={(e) => e.stopPropagation()}
-                        className='edit-input w-[85%] outline-none border-none bg-white text-lg font-bold ml-[7px] pl-2'
+                        className='edit-input w-full outline-none border-none bg-white text-lg text-black font-bold ml-[7px] pl-2'
                       />
                     ) : (
                       <span className='ml-4'>{todo.title}</span>
@@ -67,9 +65,9 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos, se
                   <div className='flex items-center'>
                     {editedItem === todo.id ? (
                       <button onClick={() => handleUpdateItem(todo.id)}
-                        className='btn-save'
+                        id='confirm-edit-btn'
                       >
-                        <VscCheck size={30} color='green' />
+                        <VscCheck size={30} />
                       </button>
                     ) : (
                       <button id='list-edit-btn' onClick={() => handleEditItem(todo.id, todo.title)}>
@@ -85,18 +83,16 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos, se
             </ul>
           </div>
         </div>
-      )}
-      {hasTodos && 
-      <SaveList
-  todos={todos}
-  setTodos={setTodos}  // Make sure this line is present
-  setSavedLists={setSavedLists}
-  listName={listName}
-  handleSelectAll={handleSelectAll}
-/>
-}
+        {/* {hasTodos && 
+        <SaveList />
+} */}
     </>
   );
 }
 
 export default GroceryList;
+
+
+// {selectedList === null ? (
+//   <p>Please select a list from the side navigation.</p>
+// ) : hasTodos && (
