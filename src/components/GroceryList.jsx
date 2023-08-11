@@ -6,7 +6,8 @@ import SaveList from './SaveList';
 
 function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos, selectedList, setSavedLists, listName, handleSelectAll }) {
   const filteredTodos = todos.filter(todo => todo.list === selectedList);
-  const hasTodos = filteredTodos.length > 0;
+  
+  // const hasTodos = filteredTodos.length > 0;
 
   const [editedItem, setEditedItem] = useState(null);
   const [updatedTitle, setUpdatedTitle] = useState('');
@@ -83,16 +84,8 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos, se
             </ul>
           </div>
         </div>
-        {/* {hasTodos && 
-        <SaveList />
-} */}
     </>
   );
 }
 
 export default GroceryList;
-
-
-// {selectedList === null ? (
-//   <p>Please select a list from the side navigation.</p>
-// ) : hasTodos && (

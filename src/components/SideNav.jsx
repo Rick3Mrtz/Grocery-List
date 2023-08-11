@@ -2,15 +2,7 @@ import { useEffect } from 'react';
 import { FaTimes } from 'react-icons/fa';
 
 function SideNav({ showSideNav, savedLists, setSavedLists, setShowSideNav, setSelectedList, listName }) {
-  const handleDeleteList = (index) => {
-    const updatedLists = [...savedLists];
-    updatedLists.splice(index, 1);
-    setSavedLists(updatedLists);
-  };
 
-  useEffect(() => {
-    localStorage.setItem('savedLists', JSON.stringify(savedLists));
-  }, [savedLists]);
 
 
 

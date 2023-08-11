@@ -22,7 +22,7 @@ function BottomNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
     <div>
 
 
-    <div className="bottom-nav">
+    <div className="bottom-nav bg-transparent">
 
       
       

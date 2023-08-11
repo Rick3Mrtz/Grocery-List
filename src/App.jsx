@@ -108,8 +108,6 @@ function App() {
     setIsEditingListName(false);
   }
 
-  console.log('todosLength:', todosLength);
-
   return (
     <Router>
       <Nav
@@ -179,6 +177,7 @@ function App() {
         <Route path="/grid" element={
             <GridLayout
               savedLists={savedLists}
+              setSavedLists={setSavedLists}
             />
         }
         />
