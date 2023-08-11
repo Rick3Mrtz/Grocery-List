@@ -38,7 +38,7 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos, se
       ) : hasTodos && (
         <div className=' rounded-md mx-2 px-2 py-2 h-fit mt-6 relative'>
           <div className='max-h-[43vh] overflow-y-auto'>
-            <ul className='list flex flex-col justify-start items-stretch text-white'>
+            <ul className='list flex flex-col justify-start items-stretch text-[#c0bda5]'>
               {todos.map((todo) => (
                 <li
                   key={todo.id}
@@ -76,8 +76,8 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos, se
                         <BiEdit size={30} />
                       </button>
                     )}
-                    <button onClick={() => handleDeleteItem(todo.id)}>
-                      <VscClose size={30} color='red' />
+                    <button id='delete-single-btn' onClick={() => handleDeleteItem(todo.id)}>
+                      <VscClose size={30} />
                     </button>
                   </div>
                 </li>

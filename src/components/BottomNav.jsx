@@ -7,7 +7,7 @@ import { BsInstagram } from 'react-icons/bs';
 import { BsFillGridFill } from 'react-icons/bs';
 import GridLayout from './GridLayout';
 
-function BottomNav({ savedLists, handleCreateNewList, enterEditListNameMode }) {
+function BottomNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
 
   const [createNewListMode, setCreateNewListMode] = useState(false);
 
@@ -44,6 +44,13 @@ function BottomNav({ savedLists, handleCreateNewList, enterEditListNameMode }) {
         onClick={() => {
           enterEditListNameMode();
           handleNewListClick();
+
+          setTimeout(() => {
+            if (inputRef.current) {
+              inputRef.current.focus();
+              inputRef.current.select();
+            }
+          }, 0);
         }}
       >
         <BsPlusCircleFill size={50} />

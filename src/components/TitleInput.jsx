@@ -15,7 +15,7 @@ function TitleInput({
   
   return (
     <>
-      <h1 className='title-input flex mx-2 px-2 text-[3rem] font-bold justify-start mt-[8vh] mb-[4vh] text-[#c0bda5]'>
+      <h1 className='title-input flex mx-2 px-2 text-[2.7rem] font-bold justify-start mt-[6vh] mb-[2vh] text-[#c0bda5]'>
         {isEditingListName ? (
           <div className=" ">
             <input

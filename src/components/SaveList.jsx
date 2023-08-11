@@ -29,7 +29,7 @@ function SaveList({ todos, setTodos, setSavedLists, listName = "", handleSelectA
 
 
     return (
-        <div className="flex items-center justify-between mx-2">
+        <div className="flex items-center justify-between mt-6 mx-4">
             <button id="select-all" className='btn' onClick={handleSelectAll}>
                 <BiSolidSelectMultiple size={25} />
             </button>

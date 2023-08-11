@@ -115,6 +115,7 @@ function App() {
         setShowSideNav={setShowSideNav}
         handleCreateNewList={handleCreateNewList}
         enterEditListNameMode={enterEditListNameMode}
+        inputRef={inputRef}
       />
 
       <SideNav

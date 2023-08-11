@@ -78,7 +78,7 @@ form {
   display: flex;
   justify-content: center;
   color: #ffffff;
-  background-color: #354f;
+  background-color: #5DC09A;
   padding: 7px;
   border-radius: 3px;
   cursor: pointer;
@@ -112,7 +112,7 @@ form {
 }
 
 #list-edit-btn {
-  color: #c0bda5;
+  color: #5DC09A;
 }
 
 .title-input {
@@ -128,9 +128,9 @@ form {
 #select-all {
   /* border: #354f; */
   outline-style: solid;
-  outline-color: #354f;
+  outline-color: #c0bda5;
   background-color: transparent;
-  color: #354f;
+  color: #c0bda5;
   width: 40px;
 }
 
@@ -138,11 +138,15 @@ form {
   width: 130px;
 }
 
+#delete-single-btn {
+  color: #c0bda5;
+}
+
 #clear-all {
   /* border: #354f; */
   outline-style: solid;
-  outline-color: red;
-  background-color: red;
+  outline-color: #c0bda5;
+  background-color: #c0bda5;
   color: white;
   width: 40px;
 }
@@ -215,6 +219,10 @@ form {
   background: none;
   font-size: 14px;
   cursor: pointer;
+}
+
+#nav-circle {
+  color: #5DC09A;
 }
 
 .card {
