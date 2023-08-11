@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import InputForm from './components/InputForm';
 import BottomNav from './components/BottomNav';
@@ -140,7 +140,8 @@ function App() {
         }
     />
     <Route path="/grid" element={
-         <GridLayout 
+         <GridLayout
+         savedLists={savedLists}
          setShowSideNav={setShowSideNav} 
          showSideNav={showSideNav}/>} 
          />

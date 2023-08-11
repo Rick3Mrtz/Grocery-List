@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Router, Route, Link, Routes } from 'react-router-dom';
+import { useNavigate, BrowserRouter, Router, Route, Link, Routes } from 'react-router-dom';
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { AiFillHome } from 'react-icons/ai';
 import { BsImages } from 'react-icons/bs';
@@ -8,6 +8,7 @@ import { BsFillGridFill } from 'react-icons/bs';
 import GridLayout from './GridLayout';
 
 function BottomNav({ savedLists, handleCreateNewList, enterEditListNameMode }) {
+
   const [createNewListMode, setCreateNewListMode] = useState(false);
 
   const handleNewListClick = () => {
@@ -23,13 +24,19 @@ function BottomNav({ savedLists, handleCreateNewList, enterEditListNameMode }) {
 
     <div className="bottom-nav bg-gray-200">
 
-      <button className="nav-button">
-        <AiFillHome size={30} />
-      </button>
       
-        <button className="nav-button">
+      
+      <Link
+      to='/'
+      className="nav-button">
+        <AiFillHome size={30} />
+      </Link>
+      
+        <Link 
+        to='/grid'
+        className="nav-button">
         <BsFillGridFill size={30} />
-        </button>
+        </Link>
        
       <button
         className="nav-button"
