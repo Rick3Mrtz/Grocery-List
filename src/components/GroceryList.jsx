@@ -36,9 +36,9 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos, se
       {selectedList === null ? (
         <p>Please select a list from the side navigation.</p>
       ) : hasTodos && (
-        <div className='bg-gray-200 rounded-md mx-2 px-2 py-2 h-fit mt-6 relative'>
+        <div className=' rounded-md mx-2 px-2 py-2 h-fit mt-6 relative'>
           <div className='max-h-[43vh] overflow-y-auto'>
-            <ul className='list flex flex-col justify-start items-stretch'>
+            <ul className='list flex flex-col justify-start items-stretch text-white'>
               {todos.map((todo) => (
                 <li
                   key={todo.id}
@@ -72,8 +72,8 @@ function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos, se
                         <VscCheck size={30} color='green' />
                       </button>
                     ) : (
-                      <button onClick={() => handleEditItem(todo.id, todo.title)}>
-                        <BiEdit size={30} color='black' />
+                      <button id='list-edit-btn' onClick={() => handleEditItem(todo.id, todo.title)}>
+                        <BiEdit size={30} />
                       </button>
                     )}
                     <button onClick={() => handleDeleteItem(todo.id)}>

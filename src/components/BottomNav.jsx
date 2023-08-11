@@ -22,7 +22,7 @@ function BottomNav({ savedLists, handleCreateNewList, enterEditListNameMode }) {
     <div>
 
 
-    <div className="bottom-nav bg-gray-200">
+    <div className="bottom-nav">
 
       
       

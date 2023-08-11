@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Signika+Negative:wght@500&display=swap');
+
 :root {
-  background: #CAD2C5;
+  height: 100vh;
+  background: #132a18;
+  
 }
 
 body {
@@ -107,6 +111,20 @@ form {
   background-color: white;
 }
 
+#list-edit-btn {
+  color: #c0bda5;
+}
+
+.title-input {
+  font-family: 'Poppins', sans-serif;
+
+}
+
+#title-input-save {
+  font-size: 16px;
+  width: 40px;
+}
+
 #select-all {
   /* border: #354f; */
   outline-style: solid;
@@ -185,14 +203,14 @@ form {
   left: 0;
   width: 100%;
   /* padding: 10px; */
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+ 
 }
 
 .nav-button {
   /* flex: 1; */
   /* text-align: center; */
   padding: 15px;
-  color: #354f;
+  color: #c0bda5;
   border: none;
   background: none;
   font-size: 14px;

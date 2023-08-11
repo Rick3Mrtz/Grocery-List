@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import InputForm from './components/InputForm';
@@ -40,8 +40,14 @@ function App() {
 
   const [isEditingListName, setIsEditingListName] = useState(false);
 
+  const inputRef = useRef(null);
+
   const enterEditListNameMode = () => {
     setIsEditingListName(true);
+    if (inputRef.current) {
+      inputRef.current.focus();
+      inputRef.current.select();
+    }
   };
 
   useEffect(() => {
@@ -97,55 +103,68 @@ function App() {
 
   return (
     <Router>
-      <Nav setShowSideNav={setShowSideNav} />
-      <Routes>
-        <Route
-        path='/'
-        element={ 
-    <>
-        <TitleInput
-        isEditingListName={isEditingListName}
-        listName={listName}
-        handleListNameChange={handleListNameChange} 
+      <Nav
         handleListNameBlur={handleListNameBlur}
-        handleListNameKeyPress={handleListNameKeyPress}
-        setIsEditingListName= {setIsEditingListName}
+        setIsEditingListName={setEditingListName}
+        enterEditListNameMode={enterEditListNameMode}
+        inputRef={inputRef}
         />
-        <InputForm setTodos={setTodos} />
-        <GroceryList
-          todos={todos}
-          handleCompleteItem={handleCompleteItem}
-          handleDeleteItem={handleDeleteItem}
-          setTodos={setTodos}
-          handleSelectAll={handleSelectAll}
-          setSavedLists={setSavedLists}
-          listName={listName}
-          // selectedList={selectedList}
-        />
-        <BottomNav
+
+      <BottomNav
         savedLists={savedLists}
         setShowSideNav={setShowSideNav}
         handleCreateNewList={handleCreateNewList}
         enterEditListNameMode={enterEditListNameMode}
+      />
+
+      <SideNav
+        showSideNav={showSideNav}
+        savedLists={savedLists}
+        setSavedLists={setSavedLists}
+        setShowSideNav={setShowSideNav}
+        // setSelectedList={setSelectedList}
+        listName={listName}
+      />
+
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <>
+              <TitleInput
+                isEditingListName={isEditingListName}
+                listName={listName}
+                handleListNameChange={handleListNameChange}
+                handleListNameBlur={handleListNameBlur}
+                handleListNameKeyPress={handleListNameKeyPress}
+                setIsEditingListName={setIsEditingListName}
+                inputRef={inputRef}
+              />
+
+              <InputForm setTodos={setTodos} />
+
+              <GroceryList
+                todos={todos}
+                handleCompleteItem={handleCompleteItem}
+                handleDeleteItem={handleDeleteItem}
+                setTodos={setTodos}
+                handleSelectAll={handleSelectAll}
+                setSavedLists={setSavedLists}
+                listName={listName}
+              // selectedList={selectedList}
+              />
+            </>
+          }
         />
-        <SideNav
-          showSideNav={showSideNav}
-          savedLists={savedLists}
-          setSavedLists={setSavedLists}
-          setShowSideNav={setShowSideNav}
-          // setSelectedList={setSelectedList}
-          listName={listName}
+
+        <Route path="/grid" element={
+          <GridLayout
+            savedLists={savedLists}
+            setShowSideNav={setShowSideNav}
+            showSideNav={showSideNav} />}
         />
-    </>
-        }
-    />
-    <Route path="/grid" element={
-         <GridLayout
-         savedLists={savedLists}
-         setShowSideNav={setShowSideNav} 
-         showSideNav={showSideNav}/>} 
-         />
-    </Routes>
+
+      </Routes>
     </Router>
   );
 }

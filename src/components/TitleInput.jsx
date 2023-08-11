@@ -1,35 +1,42 @@
-import React from "react";
+import React from 'react';
 import { FaPencilAlt } from 'react-icons/fa';
+import { BsFillCheckSquareFill } from 'react-icons/bs';
 
-function TitleInput({ isEditingListName, listName, handleListNameBlur, handleListNameChange, handleListNameKeyPress, setIsEditingListName }) {
-    return (
-        <>
-                <div className='mb-32'></div>
-        <h1 className='flex text-4xl font-bold justify-center mt-[6vh] mb-[3vh] text-[#354F]'>
-          {isEditingListName ? (
+function TitleInput({
+  isEditingListName,
+  listName,
+  handleListNameBlur,
+  handleListNameChange,
+  handleListNameKeyPress,
+  inputRef,
+  setIsEditingListName
+}) {
+
+  
+  return (
+    <>
+      <h1 className='title-input flex mx-2 px-2 text-[3rem] font-bold justify-start mt-[8vh] mb-[4vh] text-[#c0bda5]'>
+        {isEditingListName ? (
+          <div className=" ">
             <input
-              type="text"
+              ref={inputRef}
+              type="  text"
               placeholder='Ex: Groceries'
               value={listName}
               onChange={handleListNameChange}
               onBlur={handleListNameBlur}
               onKeyDown={handleListNameKeyPress}
-              className=" bg-white rounded-md w-4/6 text-[#354F] text-4xl font-bold text-center"
+              className="bg-white w-full px-0 outline-none"
             />
-          ) : (
-            <>
-              <span>{listName}</span>
-              <button
-                className='ml-2'
-                onClick={() => setIsEditingListName(true)}
-              >
-                <FaPencilAlt size={24} color='black' />
-              </button>
-            </>
-          )}
-        </h1>
-        </>
-    )
+          </div>
+        ) : (
+          <>
+            <span>{listName}</span>
+          </>
+        )}
+      </h1>
+    </>
+  );
 }
 
 export default TitleInput;

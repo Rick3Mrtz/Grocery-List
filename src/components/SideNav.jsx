@@ -17,7 +17,7 @@ function SideNav({ showSideNav, savedLists, setSavedLists, setShowSideNav, setSe
   return (
     <>
       {showSideNav && (
-        <div className='fixed left-0 top-0 h-full w-64 bg-[#354f] p-4 text-white'>
+        <div className='fixed left-0 top-0 h-full w-64 bg-[#c0bda5] p-4 text-black'>
           <div className='flex justify-between items-center mb-4'>
             <h2 className='text-2xl font-bold'>Saved Lists</h2>
             <button onClick={() => setShowSideNav(false)}>
