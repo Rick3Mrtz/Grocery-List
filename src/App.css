@@ -5,12 +5,34 @@
   
 }
 
+:root {
+  --background-color-light: #fff; /* Default background color in light mode */
+  --background-color-light-2: #e2e2e2;
+
+  --text-color-light: #000; /* Default text color in light mode */
+  --text-color-light-list: #354f;
+  
+  --background-color-dark: #132a18; /* Background color in dark mode */
+  --text-color-dark: #000; /* Text color in dark mode */
+}
+
+body {
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+
+/* Add styles for dark mode */
+body.dark-mode {
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
 body {
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center; 
-  background: #132a18;
+  
 }
 
 #app-container {
@@ -60,11 +82,18 @@ form {
   border-bottom: 1px solid #ccc;
   padding-bottom: 8px;
   margin-bottom: 8px;
+  color: var(--text-color-light-list);
+  /* background-color: var(--background-color-light-2); */
 }
 
 .new-item-form {
   display: flex;
   flex-direction: row;
+  background-color: var(--background-color-light-2);
+}
+
+.list-bg {
+  background-color: var(--background-color-light-2);
 }
 
 .btn {
@@ -106,6 +135,7 @@ form {
 
 .title-input {
   font-family: 'Poppins', sans-serif;
+  color: var(--text-color-light-list);
 }
 
 #title-input-save {

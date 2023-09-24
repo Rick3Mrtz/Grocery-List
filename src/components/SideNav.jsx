@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, BrowserRouter, Router, Route, Link, Routes } from 'react-router-dom';
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { AiFillHome } from 'react-icons/ai';
-import { BsImages } from 'react-icons/bs';
-import { BsInstagram } from 'react-icons/bs';
+import { BsFillSunFill } from 'react-icons/bs';
+import { ImBrightnessContrast } from 'react-icons/im';
 import { BsFillGridFill } from 'react-icons/bs';
 import GridLayout from './GridLayout';
 
@@ -16,11 +16,18 @@ function SideNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
     handleCreateNewList();
   };
 
-  const [activeNav, setActiveNav] = useState('home');
-
-  const handleNavClick = (nav) => {
-    setActiveNav(nav);
+  const [darkMode, setDarkMode] = useState(false);
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
   };
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [darkMode]);
 
   return (
 
@@ -62,12 +69,9 @@ function SideNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
       
       </Link>
 
-      <Link className="nav-button my-3 p-4 rounded-2xl ">
-        <BsImages size={30} />
-      </Link>
-
-      <Link className="nav-button my-3 p-4 rounded-2xl ">
-        <BsInstagram size={30} />
+      <Link onClick={toggleDarkMode} className="nav-button my-3 p-4 rounded-2xl ">
+        <ImBrightnessContrast size={30}
+         />
       </Link>
       </div>
 
