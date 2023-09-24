@@ -14,7 +14,7 @@ body {
 }
 
 #app-container {
-  width: 370px;
+  width: 420px;
   box-sizing: border-box;
   margin: 0 auto;
 
@@ -94,7 +94,6 @@ form {
   background-color: #354f; 
 }
 
-/* BottomNav.css */
 .plus-btn {
   position: fixed;
   bottom: 0;
@@ -213,6 +212,10 @@ form {
 .nav-button:hover {
 background-color: #132a18;
 transition: ease-in-out 200ms;}
+
+/* .active, .active:hover {
+  border-bottom: 2px red;
+} */
 
 #nav-circle {
   color: #354f;

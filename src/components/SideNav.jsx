@@ -16,6 +16,12 @@ function SideNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
     handleCreateNewList();
   };
 
+  const [activeNav, setActiveNav] = useState('home');
+
+  const handleNavClick = (nav) => {
+    setActiveNav(nav);
+  };
+
   return (
 
     <>
@@ -31,7 +37,7 @@ function SideNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
       
         <Link 
         to='/grid'
-        className="nav-button my-3 p-4 rounded-2xl ">
+        className="nav-button active my-3 p-4 rounded-2xl ">
         <BsFillGridFill size={30} />
         </Link>
        

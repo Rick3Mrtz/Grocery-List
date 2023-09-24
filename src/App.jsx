@@ -4,10 +4,8 @@ import './App.css';
 import InputForm from './components/InputForm';
 import BottomNav from './components/BottomNav';
 import GroceryList from './components/GroceryList';
-import Nav from './components/Nav';
 import SideNav from './components/SideNav';
 import GridLayout from './components/GridLayout';
-import Home from './components/Home';
 import TitleInput from './components/TitleInput';
 import SaveList from './components/SaveList';
 
@@ -70,6 +68,7 @@ function App() {
   // }, [isEditingListName, listName]);
 
   const [showSideNav, setShowSideNav] = useState(false);
+  
   const [savedLists, setSavedLists] = useState(() => {
     const storedLists = localStorage.getItem('savedLists');
     return storedLists ? JSON.parse(storedLists) : [];
@@ -110,12 +109,6 @@ function App() {
 
   return (
     <Router>
-      {/* <Nav
-        handleListNameBlur={handleListNameBlur}
-        setIsEditingListName={setEditingListName}
-        enterEditListNameMode={enterEditListNameMode}
-        inputRef={inputRef}
-      /> */}
 
       <SideNav
         savedLists={savedLists}
@@ -124,7 +117,7 @@ function App() {
         enterEditListNameMode={enterEditListNameMode}
         inputRef={inputRef}
       />
-      
+
       <BottomNav
         savedLists={savedLists}
         setShowSideNav={setShowSideNav}
