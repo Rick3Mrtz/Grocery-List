@@ -2,7 +2,6 @@
 
 :root {
   height: 100vh;
-  background: #132a18;
   
 }
 
@@ -11,13 +10,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center; 
-
+  background: #132a18;
 }
 
 #app-container {
-  max-width: 400px;
+  width: 370px;
   box-sizing: border-box;
-  padding: 0 10px;
+  margin: 0 auto;
 
 }
 
@@ -55,11 +54,6 @@ form {
 .custom-checkbox {
   width: 20px;
   height: 20px;
-}
-
-#app-container {
-  width: 400px;
-  margin: 0 auto;
 }
 
 .list li {
@@ -113,7 +107,6 @@ form {
 
 .title-input {
   font-family: 'Poppins', sans-serif;
-
 }
 
 #title-input-save {
@@ -200,33 +193,29 @@ form {
   color: #5DC09A;
 }
 
-/* BOTTOM NAV */
+@media (min-width: 768px) {
+  .bottom-nav {
+    display: none;
+}}
 
-.bottom-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  /* padding: 10px; */
- 
-}
+@media (max-width: 768px) {
+  .side-nav {
+    display: none;
+}}
 
-.nav-button {
-  /* flex: 1; */
-  /* text-align: center; */
-  padding: 15px;
-  color: #c0bda5;
-  border: none;
-  background: none;
-  font-size: 14px;
-  cursor: pointer;
-}
+  .nav-button {
+    color: #354f;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
+.nav-button:hover {
+background-color: #132a18;
+transition: ease-in-out 200ms;}
 
 #nav-circle {
-  color: #5DC09A;
+  color: #354f;
 }
 
 .card {

@@ -63,11 +63,11 @@ function App() {
     localStorage.setItem('listName', JSON.stringify(listName));
   }, [listName]);
 
-  useEffect(() => {
-    if (!isEditingListName && listName.trim() === '') {
-      setListName('New List');
-    }
-  }, [isEditingListName, listName]);
+  // useEffect(() => {
+  //   if (!isEditingListName && listName.trim() === '') {
+  //     setListName('New List');
+  //   }
+  // }, [isEditingListName, listName]);
 
   const [showSideNav, setShowSideNav] = useState(false);
   const [savedLists, setSavedLists] = useState(() => {
@@ -110,13 +110,21 @@ function App() {
 
   return (
     <Router>
-      <Nav
+      {/* <Nav
         handleListNameBlur={handleListNameBlur}
         setIsEditingListName={setEditingListName}
         enterEditListNameMode={enterEditListNameMode}
         inputRef={inputRef}
-      />
+      /> */}
 
+      <SideNav
+        savedLists={savedLists}
+        setShowSideNav={setShowSideNav}
+        handleCreateNewList={handleCreateNewList}
+        enterEditListNameMode={enterEditListNameMode}
+        inputRef={inputRef}
+      />
+      
       <BottomNav
         savedLists={savedLists}
         setShowSideNav={setShowSideNav}
@@ -125,14 +133,6 @@ function App() {
         inputRef={inputRef}
       />
 
-      <SideNav
-        showSideNav={showSideNav}
-        savedLists={savedLists}
-        setSavedLists={setSavedLists}
-        setShowSideNav={setShowSideNav}
-        // setSelectedList={setSelectedList}
-        listName={listName}
-      />
 
       <Routes>
         <Route
@@ -147,6 +147,7 @@ function App() {
                 handleListNameKeyPress={handleListNameKeyPress}
                 setIsEditingListName={setIsEditingListName}
                 inputRef={inputRef}
+                enterEditListNameMode={enterEditListNameMode}
               />
 
 <InputForm setTodos={setTodos} />

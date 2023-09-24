@@ -1,34 +1,73 @@
-import { useEffect } from 'react';
-import { FaTimes } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { useNavigate, BrowserRouter, Router, Route, Link, Routes } from 'react-router-dom';
+import { BsPlusCircleFill } from 'react-icons/bs';
+import { AiFillHome } from 'react-icons/ai';
+import { BsImages } from 'react-icons/bs';
+import { BsInstagram } from 'react-icons/bs';
+import { BsFillGridFill } from 'react-icons/bs';
+import GridLayout from './GridLayout';
 
-function SideNav({ showSideNav, savedLists, setSavedLists, setShowSideNav, setSelectedList, listName }) {
+function SideNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
 
+  const [createNewListMode, setCreateNewListMode] = useState(false);
 
-
+  const handleNewListClick = () => {
+    setCreateNewListMode(true);
+    handleCreateNewList();
+  };
 
   return (
+
     <>
-      {showSideNav && (
-        <div className='fixed left-0 top-0 h-full w-64 bg-[#c0bda5] p-4 text-black'>
-          <div className='flex justify-between items-center mb-4'>
-            <h2 className='text-2xl font-bold'>Saved Lists</h2>
-            <button onClick={() => setShowSideNav(false)}>
-              <FaTimes size={24} color='white' />
-            </button>
-          </div>
-          <ul>
-            {savedLists.map((list, index) => (
-                <li key={index} className='flex justify-between items-center mb-2'>
-                <span>{list.listName}</span>
-                <button onClick={() => handleDeleteList(index)}>
-                  <FaTimes size={16} color='red' />
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+    <div className="side-nav fixed top-0 left-0 bg-[#c0bda5] px-2 rounded-tr-3xl rounded-br-3xl">
+
+      <div className='flex flex-col justify-between'>
+      
+      <Link
+      to='/'
+      className="nav-button my-3 p-4 rounded-2xl ">
+        <AiFillHome size={30} />
+      </Link>
+      
+        <Link 
+        to='/grid'
+        className="nav-button my-3 p-4 rounded-2xl ">
+        <BsFillGridFill size={30} />
+        </Link>
+       
+        <Link
+      to='/'
+      
+        className="nav-button my-3 p-4 rounded-2xl "
+        id='nav-circle'
+        onClick={() => {
+          enterEditListNameMode();
+          handleNewListClick();
+
+          setTimeout(() => {
+            if (inputRef.current) {
+              inputRef.current.focus();
+              inputRef.current.select();
+            }
+          }, 0);
+        }}
+      >
+        <BsPlusCircleFill size={30} />
+      
+      </Link>
+
+      <Link className="nav-button my-3 p-4 rounded-2xl ">
+        <BsImages size={30} />
+      </Link>
+
+      <Link className="nav-button my-3 p-4 rounded-2xl ">
+        <BsInstagram size={30} />
+      </Link>
+      </div>
+
+    </div>
     </>
+
   );
 }
 

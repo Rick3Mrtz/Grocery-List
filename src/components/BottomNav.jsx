@@ -19,30 +19,26 @@ function BottomNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
   return (
 
     <>
-    <div>
+    <div className="bottom-nav fixed bottom-0 left-0 w-full bg-[#c0bda5] px-[2rem] rounded-t-3xl">
 
-
-    <div className="bottom-nav bg-transparent">
-
-      
+      <div className='flex justify-between'>
       
       <Link
       to='/'
-      className="nav-button">
+      className="nav-button my-3 p-4 rounded-2xl ">
         <AiFillHome size={30} />
       </Link>
       
         <Link 
         to='/grid'
-        className="nav-button">
+        className="nav-button my-3 p-4 rounded-2xl ">
         <BsFillGridFill size={30} />
         </Link>
        
-
         <Link
       to='/'
       
-        className="nav-button"
+        className="nav-button my-3 p-4 rounded-2xl "
         id='nav-circle'
         onClick={() => {
           enterEditListNameMode();
@@ -56,22 +52,20 @@ function BottomNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
           }, 0);
         }}
       >
-        <BsPlusCircleFill size={50} />
+        <BsPlusCircleFill size={30} />
       
       </Link>
 
-      <button className="nav-button">
+      <Link className="nav-button my-3 p-4 rounded-2xl ">
         <BsImages size={30} />
-      </button>
+      </Link>
 
-      <button className="nav-button">
+      <Link className="nav-button my-3 p-4 rounded-2xl ">
         <BsInstagram size={30} />
-      </button>
+      </Link>
+      </div>
+      
 
-    </div>
-
-
-    
     </div>
     </>
 

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import { VscCheck } from 'react-icons/vsc';
 import { BiEdit } from 'react-icons/bi';
-import SaveList from './SaveList';
 
 function GroceryList({ todos, handleCompleteItem, handleDeleteItem, setTodos, selectedList, setSavedLists, listName, handleSelectAll }) {
   const filteredTodos = todos.filter(todo => todo.list === selectedList);
