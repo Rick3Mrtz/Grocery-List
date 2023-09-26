@@ -18,7 +18,7 @@ function TitleInput({
   
   return (
     <>
-      <h1 className='title-input flex mx-2 px-2 text-[2.7rem] font-bold justify-between mt-[6vh] mb-[2vh]'>
+      <h1 className='title-input mx-2 flex text-[2.7rem] font-bold justify-between mt-[6vh] mb-[2vh] '>
         
           <div>
             <input
@@ -29,7 +29,7 @@ function TitleInput({
               onChange={handleListNameChange}
               onBlur={handleListNameBlur}
               onKeyDown={handleListNameKeyPress}
-              className="bg-transparent w-full outline-white h-4/5 p-2 text-center"
+              className=" bg-transparent outline-none w-full h-4/5 text-center"
             />
           </div>
       </h1>

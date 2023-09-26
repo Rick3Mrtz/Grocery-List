@@ -32,51 +32,35 @@ function SideNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
   return (
 
     <>
-    <div className="side-nav fixed top-0 left-0 bg-[#c0bda5] px-2 rounded-tr-3xl rounded-br-3xl">
+  <div className="side-nav fixed h-full top-0 left-0 px-2 flex flex-col justify-center">
+    <Link to='/' className="nav-button my-6 p-4 rounded-2xl">
+      <AiFillHome size={30} />
+    </Link>
 
-      <div className='flex flex-col justify-between'>
-      
-      <Link
-      to='/'
-      className="nav-button my-3 p-4 rounded-2xl ">
-        <AiFillHome size={30} />
-      </Link>
-      
-        <Link 
-        to='/grid'
-        className="nav-button active my-3 p-4 rounded-2xl ">
-        <BsFillGridFill size={30} />
-        </Link>
-       
-        <Link
-      to='/'
-      
-        className="nav-button my-3 p-4 rounded-2xl "
-        id='nav-circle'
-        onClick={() => {
-          enterEditListNameMode();
-          handleNewListClick();
+    <Link to='/' className="nav-button my-6 p-4 rounded-2xl" id='nav-circle' onClick={() => {
+      enterEditListNameMode();
+      handleNewListClick();
 
-          setTimeout(() => {
-            if (inputRef.current) {
-              inputRef.current.focus();
-              inputRef.current.select();
-            }
-          }, 0);
-        }}
-      >
-        <BsPlusCircleFill size={30} />
-      
-      </Link>
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+          inputRef.current.select();
+        }
+      }, 0);
+    }}>
+      <BsPlusCircleFill size={30} />
+    </Link>
 
-      <Link onClick={toggleDarkMode} className="nav-button my-3 p-4 rounded-2xl ">
-        <ImBrightnessContrast size={30}
-         />
-      </Link>
-      </div>
+    <Link to='/grid' className="nav-button active my-6 p-4 rounded-2xl">
+      <BsFillGridFill size={30} />
+    </Link>
 
-    </div>
-    </>
+    <Link onClick={toggleDarkMode} className="nav-button my-6 p-4 rounded-2xl">
+      <ImBrightnessContrast size={30} />
+    </Link>
+  </div>
+</>
+
 
   );
 }

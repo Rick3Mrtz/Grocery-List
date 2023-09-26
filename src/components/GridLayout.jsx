@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FaTimes } from 'react-icons/fa';
-import { BsThreeDots } from 'react-icons/bs';
+import { TiDelete } from 'react-icons/ti';
 
 function GridLayout({ savedLists, setSavedLists }) {
 
@@ -16,16 +16,17 @@ function GridLayout({ savedLists, setSavedLists }) {
 
   return (
     <>
-    <h1 className=' mt-24 text-5xl text-[#5dc09a] text-left]'>
+    <h1 className=' mt-24 text-5xl text-left]'>
       Saved Files
     </h1>
-    <div className="grid grid-cols-2 gap-4 p-4 mt-16 mb-8">
+    <p className='mt-8 text-2xl text-red-600 text-center'>*Under Construction*</p>
+    <div className="grid grid-cols-2 gap-4 p-4 mt-16 mb-8 cursor-not-allowed">
       {savedLists.map((list, index) => (
         <div key={index} className="card text-black relative">
           <button
             className='absolute top-0 right-0 px-[5px]'
             onClick={() => handleDeleteList(index)}>
-            <BsThreeDots size={23} color='black' />
+            <TiDelete size={23} color='black' />
           </button>
           {list.listName} 
         </div>
