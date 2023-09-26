@@ -37,15 +37,15 @@ function BottomNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
       <div className='flex justify-between'>
       
       <Link
-      to='/'
-      className="nav-button my-3 p-4 rounded-2xl ">
+      to='/Quik-List'
+      className="nav-button my-3 p-2 rounded-2xl ">
         <AiFillHome size={30} />
       </Link>
 
       <Link
-      to='/'
+      to='/Quik-List'
       
-        className="nav-button my-3 p-4 rounded-2xl "
+        className="nav-button my-3 p-2 rounded-2xl "
         id='nav-circle'
         onClick={() => {
           enterEditListNameMode();
@@ -65,13 +65,13 @@ function BottomNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
       
         <Link 
         to='/grid'
-        className="nav-button my-3 p-4 rounded-2xl ">
+        className="nav-button my-3 p-2 rounded-2xl ">
         <BsFillGridFill size={30} />
         </Link>
        
         
 
-      <Link onClick={toggleDarkMode} className="nav-button my-3 p-4  rounded-2xl">
+      <Link onClick={toggleDarkMode} className="nav-button my-3 p-2  rounded-2xl">
       <ImBrightnessContrast size={30} />
     </Link>
 
