@@ -8,6 +8,7 @@ import SideNav from './components/SideNav';
 import GridLayout from './components/GridLayout';
 import TitleInput from './components/TitleInput';
 import SaveList from './components/SaveList';
+import Nav from './components/Nav';
 
 function App() {
 
@@ -66,8 +67,6 @@ function App() {
   //     setListName('New List');
   //   }
   // }, [isEditingListName, listName]);
-
-  const [showSideNav, setShowSideNav] = useState(false);
   
   const [savedLists, setSavedLists] = useState(() => {
     const storedLists = localStorage.getItem('savedLists');
@@ -112,12 +111,17 @@ function App() {
 
       <SideNav
         savedLists={savedLists}
-        setShowSideNav={setShowSideNav}
         handleCreateNewList={handleCreateNewList}
         enterEditListNameMode={enterEditListNameMode}
         inputRef={inputRef}
       />
 
+      <Nav
+        savedLists={savedLists}
+        handleCreateNewList={handleCreateNewList}
+        enterEditListNameMode={enterEditListNameMode}
+        inputRef={inputRef}
+      />
       {/* <BottomNav
         savedLists={savedLists}
         setShowSideNav={setShowSideNav}

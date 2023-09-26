@@ -6,6 +6,7 @@ import { BsFillSunFill } from 'react-icons/bs';
 import { ImBrightnessContrast } from 'react-icons/im';
 import { BsFillGridFill } from 'react-icons/bs';
 import GridLayout from './GridLayout';
+import { BiMenuAltLeft } from 'react-icons/bi';
 
 function SideNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
 
@@ -29,37 +30,54 @@ function SideNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
     }
   }, [darkMode]);
 
+
+
+
+  const [showSideNav, setShowSideNav] = useState(false);
+
+  const handleToggleNav = () => {
+
+    setShowSideNav(!showSideNav)
+  }
+
   return (
 
     <>
-  <div className="side-nav fixed h-full top-0 left-0 px-2 flex flex-col justify-center">
-    <Link to='/Quik-List' className="nav-button my-6 p-4 rounded-2xl">
-      <AiFillHome size={30} />
-    </Link>
+      <div className="burger-menu fixed top-0 left-0" onClick={handleToggleNav}>
+        <BiMenuAltLeft className='ml-2 mt-4 bg-white rounded-lg' size={40} />
+      </div>
 
-    <Link to='/Quik-List' className="nav-button my-6 p-4 rounded-2xl" id='nav-circle' onClick={() => {
-      enterEditListNameMode();
-      handleNewListClick();
+      {showSideNav && (
+        <div className="side-nav fixed h-full top-0 left-0 flex flex-col justify-center">
+          <Link to='/Quik-List' className="nav-button my-10 mx-2 p-2 rounded-2xl">
+            <AiFillHome size={30} />
+          </Link>
 
-      setTimeout(() => {
-        if (inputRef.current) {
-          inputRef.current.focus();
-          inputRef.current.select();
-        }
-      }, 0);
-    }}>
-      <BsPlusCircleFill size={30} />
-    </Link>
+          <Link to='/Quik-List' className="nav-button my-10 mx-2 p-2 rounded-2xl" id='nav-circle' onClick={() => {
+            enterEditListNameMode();
+            handleCreateNewList();
 
-    <Link to='/grid' className="nav-button active my-6 p-4 rounded-2xl">
-      <BsFillGridFill size={30} />
-    </Link>
+            setTimeout(() => {
+              if (inputRef.current) {
+                inputRef.current.focus();
+                inputRef.current.select();
+              }
+            }, 0);
+          }}>
+            <BsPlusCircleFill size={30} />
+          </Link>
 
-    <Link onClick={toggleDarkMode} className="nav-button my-6 p-4 rounded-2xl">
+          <Link to='/grid' className="nav-button active my-10 mx-2 p-2 rounded-2xl">
+            <BsFillGridFill size={30} />
+          </Link>
+
+          <Link onClick={toggleDarkMode} className="nav-button my-10 mx-2 p-2 rounded-2xl">
       <ImBrightnessContrast size={30} />
     </Link>
-  </div>
-</>
+
+        </div>
+      )}
+    </>
 
 
   );
