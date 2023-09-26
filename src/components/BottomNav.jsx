@@ -41,14 +41,8 @@ function BottomNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
       className="nav-button my-3 p-4 rounded-2xl ">
         <AiFillHome size={30} />
       </Link>
-      
-        <Link 
-        to='/grid'
-        className="nav-button my-3 p-4 rounded-2xl ">
-        <BsFillGridFill size={30} />
-        </Link>
-       
-        <Link
+
+      <Link
       to='/'
       
         className="nav-button my-3 p-4 rounded-2xl "
@@ -68,6 +62,14 @@ function BottomNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
         <BsPlusCircleFill size={30} />
       
       </Link>
+      
+        <Link 
+        to='/grid'
+        className="nav-button my-3 p-4 rounded-2xl ">
+        <BsFillGridFill size={30} />
+        </Link>
+       
+        
 
       <Link onClick={toggleDarkMode} className="nav-button my-3 p-4  rounded-2xl">
       <ImBrightnessContrast size={30} />
