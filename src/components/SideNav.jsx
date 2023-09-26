@@ -30,24 +30,13 @@ function SideNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
     }
   }, [darkMode]);
 
-
-
-
-  const [showSideNav, setShowSideNav] = useState(false);
-
-  const handleToggleNav = () => {
-
-    setShowSideNav(!showSideNav)
-  }
-
   return (
 
     <>
-      <div className="burger-menu fixed top-0 left-0" onClick={handleToggleNav}>
+      {/* <div className="burger-menu fixed top-0 left-0">
         <BiMenuAltLeft className='ml-2 mt-4 bg-white rounded-lg' size={40} />
-      </div>
+      </div> */}
 
-      {showSideNav && (
         <div className="side-nav fixed h-full top-0 left-0 flex flex-col justify-center">
           <Link to='/Quik-List' className="nav-button my-10 mx-2 p-2 rounded-2xl">
             <AiFillHome size={30} />
@@ -76,7 +65,6 @@ function SideNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
     </Link>
 
         </div>
-      )}
     </>
 
 

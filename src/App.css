@@ -112,6 +112,18 @@ body.dark-mode .list-bg {
   padding: 7px;
   border-radius: 3px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .btn:hover {
+    background-color: transparent; /* or any other background color you prefer */
+    transition: none; /* Remove the transition effect */
+  }
+}
+
+.btn.clicked {
+  background-color: red;
 }
 
 .btn-add {
@@ -163,7 +175,6 @@ body.dark-mode .title-input {
 
 #select-all {
   outline-style: solid;
-  background-color: var(--background-color-light-3);
   width: 40px;
 }
 
@@ -204,14 +215,21 @@ body.dark-mode #delete-single-btn {
 
 #clear-all {
   outline-style: solid;
-  background-color: var(--background-color-light-3);
-  color: white;
   width: 40px;
 }
 
 #clear-all:hover {
   background-color: #0ebfdb;
   transition: ease-in-out 200ms;}
+
+  @media (max-width: 768px) {
+    #clear-all:hover,
+    #save-list:hover,
+    #select-all:hover {
+      background-color: #001c81;
+      transition: none;
+    }
+  }
 
 .popup {
   position: fixed;
@@ -277,28 +295,10 @@ body.dark-mode .side-nav {
   background-color: var(--background-color-dark-2);
   color: var(--text-color-light);
 }
-
-/* body.dark-mode .bottom-nav {
-  background-color: var(--background-color-dark-2);
-  color: var(--text-color-light);
-}
-
-.bottom-nav {
-  background-color: var(--background-color-light-3);
-  color: var(--text-color-light);
-} */
 .nav {
   background-color: var(--background-color-light-3);
   color: var(--text-color-light);
 }
-
-/* @media (min-width: 768px) {
-  .bottom-nav {
-    display: none;
-    
-}} */
-
-
 
 @media (min-width: 768px) {
   .side-nav {
@@ -306,11 +306,11 @@ body.dark-mode .side-nav {
   }
 }
 
-/* @media (min-width: 768px) {
+@media (max-width: 768px) {
   body {
     padding-left: 70px;
-  }  
-} */
+  }
+}
 
   .nav-button {
     color: var(--text-color-light);
@@ -323,6 +323,13 @@ body.dark-mode .side-nav {
 background-color: #0ebfdb;
 transition: ease-in-out 200ms;}
 
+@media (max-width: 768px) {
+  .nav-button:hover {
+    background-color: transparent; 
+    transition: none;
+  }
+}
+
 .card {
   background-color: white;
   padding: 30px 0px ;
@@ -330,19 +337,6 @@ transition: ease-in-out 200ms;}
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
-
-.burger-menu {
-  color: var(--background-color-light-3);
-  cursor: pointer;
-  z-index: 99;
-
-}
-
-@media (min-width: 768px) {
-  .burger-menu {
-    display: none;
-    
-}}
 
 @media (max-width: 768px) {
   .nav {

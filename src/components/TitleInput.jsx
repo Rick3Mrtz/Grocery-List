@@ -18,7 +18,7 @@ function TitleInput({
   
   return (
     <>
-      <h1 className='title-input mx-10 md:mx-2 lg:mx-2 flex text-[2.4rem] md:text-[2.5rem] lg:text-[2.7rem] font-bold justify-between mt-[6vh] mb-[2vh] '>
+      <h1 className='title-input mx-10 md:mx-2 lg:mx-2 flex text-[2.4rem] md:text-[2.5rem] lg:text-[2.7rem] font-bold justify-between mt-[4vh] md:mt-[8vh] lg:mt-[8vh] mb-[2vh] '>
         
           <div>
             <input

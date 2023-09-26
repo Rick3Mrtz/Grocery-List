@@ -16,7 +16,7 @@ function GridLayout({ savedLists, setSavedLists }) {
 
   return (
     <>
-    <h1 className=' mt-24 text-5xl text-left]'>
+    <h1 className=' mt-24 text-5xl text-center'>
       Saved Files
     </h1>
     <p className='mt-8 text-2xl text-red-600 text-center'>*Under Construction*</p>

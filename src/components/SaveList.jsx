@@ -27,6 +27,11 @@ function SaveList({ todos, setTodos, setSavedLists, listName = "", handleSelectA
         setShowConfirmationPopup(false);
     };
 
+    const [clicked, setClicked] = useState(false)
+    const handleButtonClick = () => {
+        setClicked(!clicked)
+    }
+
 
     return (
         <div className="flex items-center justify-between mt-6 mx-10 md:mx-2 lg:mx-2">
