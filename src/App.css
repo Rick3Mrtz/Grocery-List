@@ -278,7 +278,7 @@ body.dark-mode .side-nav {
   color: var(--text-color-light);
 }
 
-body.dark-mode .bottom-nav {
+/* body.dark-mode .bottom-nav {
   background-color: var(--background-color-dark-2);
   color: var(--text-color-light);
 }
@@ -286,13 +286,13 @@ body.dark-mode .bottom-nav {
 .bottom-nav {
   background-color: var(--background-color-light-3);
   color: var(--text-color-light);
-}
+} */
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .bottom-nav {
     display: none;
     
-}}
+}} */
 @media (min-width: 768px) {
   body {
     padding-left: 70px;
@@ -300,12 +300,12 @@ body.dark-mode .bottom-nav {
     
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .side-nav {
     display: none !important;
 }
   
-}
+} */
 
   .nav-button {
     color: var(--text-color-light);

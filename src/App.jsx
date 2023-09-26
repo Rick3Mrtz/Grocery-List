@@ -118,13 +118,13 @@ function App() {
         inputRef={inputRef}
       />
 
-      <BottomNav
+      {/* <BottomNav
         savedLists={savedLists}
         setShowSideNav={setShowSideNav}
         handleCreateNewList={handleCreateNewList}
         enterEditListNameMode={enterEditListNameMode}
         inputRef={inputRef}
-      />
+      /> */}
 
 
       <Routes>
