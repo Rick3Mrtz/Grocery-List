@@ -33,11 +33,11 @@ function SideNav({ inputRef, handleCreateNewList, enterEditListNameMode }) {
 
     <>
   <div className="side-nav fixed h-full top-0 left-0 px-2 flex flex-col justify-center">
-    <Link to='/' className="nav-button my-6 p-4 rounded-2xl">
+    <Link to='/Grocery-List' className="nav-button my-6 p-4 rounded-2xl">
       <AiFillHome size={30} />
     </Link>
 
-    <Link to='/' className="nav-button my-6 p-4 rounded-2xl" id='nav-circle' onClick={() => {
+    <Link to='/Grocery-List' className="nav-button my-6 p-4 rounded-2xl" id='nav-circle' onClick={() => {
       enterEditListNameMode();
       handleNewListClick();
 

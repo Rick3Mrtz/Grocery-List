@@ -129,7 +129,7 @@ function App() {
 
       <Routes>
         <Route
-          path='/'
+          path='/Grocery-List'
           element={
             <>
               <TitleInput
