@@ -39,7 +39,7 @@ function App() {
 
   const handleCreateNewList = () => {
     setTodos([]);
-    setListName('New List');
+    setListName('Add List Name Here');
   };
 
   const [isEditingListName, setIsEditingListName] = useState(false);
