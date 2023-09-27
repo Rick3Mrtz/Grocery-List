@@ -29,7 +29,7 @@ function TitleInput({
               onChange={handleListNameChange}
               onBlur={handleListNameBlur}
               onKeyDown={handleListNameKeyPress}
-              className=" bg-transparent outline-none w-full h-4/5 text-center"
+              className=" bg-transparent outline-none w-full h-4/5 text-center pb-2"
             />
           </div>
       </h1>
