@@ -27,7 +27,7 @@ function InputForm({ setTodos }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className='new-item-form mt-6 rounded-md mx-10 md:mx-2 lg:mx-2'>
+      <form onSubmit={handleSubmit} className='new-item-form mt-6 rounded-md mx-10 md:mx-0 lg:mx-0 '>
         <input
           className='w-[47vw] rounded-md h-[40px] my-4 max-w-[17rem] pl-2 text-black'
           type='text'
